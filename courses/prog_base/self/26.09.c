@@ -1,10 +1,6 @@
 #include <stdio.h>
 
 int main () {
-    printf ("Enter city code: ");
-    int code;
-    scanf ("%d", &code);
-    
     printf ("Enter hours: ");
     int hours;
     scanf ("%d", &hours);
@@ -12,6 +8,10 @@ int main () {
     printf ("Enter minutes: ");
     int minutes;
     scanf ("%d", &minutes);
+    
+     printf ("Enter city code: ");
+    int code;
+    scanf ("%d", &code);
     
     double tariff;
     switch (code) {
