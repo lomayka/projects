@@ -41,8 +41,8 @@ int main () {
         }
     }
     
-    int allMinutes = (hours * 60) + minutes;
-    double resultTariff = allMinutes * tariff;
+    int Minutesresult = (hours * 60) + minutes;
+    double resultTariff = Minutesresult * tariff;
     printf ("%.2lf\n", resultTariff);
     
     return 0;
