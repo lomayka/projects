@@ -62,7 +62,7 @@ switch (op) {
 	case 11: 
 	return floor(pow(a,n0+b)/(n1+M_PI));
 	default: 
-	 (op>100) ? -1 :((a+1!=0) && (b+1!=0) ? ( op % abs ( a + 1 )) + ( op % abs ( b
+	return (op>=100) ? -1 :((a+1!=0) && (b+1!=0) ? ( op % abs ( a + 1 )) + ( op % abs ( b
 + 1 )) : 0 );
 	}
 return result ;

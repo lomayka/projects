@@ -5,4 +5,7 @@ double calc ( double x , double y , double z ) {
 a=pow(x,y+1)/pow(x-y,1/z)+z/x+sqrt(abs(cos(y)/sin(x)+1));
 return a;
 }
+else {
+	return NAN;
+}
 }
