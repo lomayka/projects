@@ -1,14 +1,18 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+double long2double (long long);
 int main(){
 long long number;
+double result;
+result=long2double(number);
+return result;
+}
+double long2double (long long number){
 short S,i,j;
 double F=0,V,E=0;
-
 printf("Enter the long long number ");
 scanf("%lld", &number);
-
 S=(number>>63)&1;
 for (j=52;j<63;++j) {
         E+=((number>>j)&1)*(pow(2,(j-52)));
@@ -43,4 +47,3 @@ if ((E==0) && (F==0) && (S==0)){
 	printf("V=%.325llf",V);
 }
 }
-
