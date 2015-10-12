@@ -1,11 +1,11 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
 double long2double (long long);
 int main(){
 long long number;
 printf("%.325llf",long2double(number));
-}
+}*/
 double long2double (long long number){
 short S,i,j;
 double F=0,V,E=0;
