@@ -8,6 +8,8 @@ void transposMain(int mat[4][4]);
 void printmatrix(int mat[4][4]);
 int main(){
     int mat[4][4],n,m;
+    srand(time(NULL));
+
     fillRand(mat);
     printmatrix(mat);
 
@@ -37,7 +39,6 @@ void printmatrix(int mat[4][4]){
 }*/
 void fillRand (int mat[4][4]){
     int a,b;
-    srand(time(NULL));
     for (a=0;a<4;a++)
         {
         for (b=0;b<4;b++)
