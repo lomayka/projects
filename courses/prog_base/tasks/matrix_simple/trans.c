@@ -92,11 +92,10 @@ for (a=0;a<4;a++){
 }
 void transposMain(int mat[4][4]){
     int mat1[4][4];
-    int a,b,c,i,j;
+    int a,b,i,j;
  for (a=0;a<4;a++){
         for (b=0;b<4;b++){
-            c=3-a;
-           mat1[a][b]=mat[c][b];
+           mat1[a][b]=mat[a][b];
 
         }
 }
