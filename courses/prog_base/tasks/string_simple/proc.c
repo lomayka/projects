@@ -14,9 +14,9 @@ char *process (char *resultStr, const char *textLines [], int linesNum, const ch
         for (j = 0; j < linesNum; j++) {
             if (strcmp(textLines[i], textLines[j]) == 0) {
                 counter++;
-                length = strlen(textLines[i]);
             }
         }
+        length = strlen(textLines[i]);
         if (counter > maxCounter) {
             maxCounter = counter;
             maxIndex = i;
