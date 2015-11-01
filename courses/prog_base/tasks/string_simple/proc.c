@@ -8,6 +8,7 @@ char *process (char *resultStr, const char *textLines [], int linesNum, const ch
     int length=0;
     int i=0;
     int j=0;
+    char tempResult[100];
 
     for (i = 0; i < linesNum; i++) {
         for (j = 0; j < linesNum; j++) {
@@ -29,7 +30,6 @@ char *process (char *resultStr, const char *textLines [], int linesNum, const ch
 
     }
 
-    char tempResult[100];
     sprintf(tempResult, "%d, %s", maxCounter, textLines[maxIndex]);
     resultStr = tempResult;
     return resultStr;
