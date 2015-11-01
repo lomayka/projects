@@ -30,7 +30,6 @@ char *process (char *resultStr, const char *textLines [], int linesNum, const ch
 
     }
 
-    sprintf(tempResult, "%d, %s", maxCounter, textLines[maxIndex]);
-    resultStr = tempResult;
+    sprintf(resultStr, "%d, %s", maxCounter, textLines[maxIndex]);
     return resultStr;
 }
