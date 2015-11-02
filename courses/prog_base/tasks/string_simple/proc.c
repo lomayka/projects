@@ -8,9 +8,10 @@ char *process (char *resultStr, const char *textLines [], int linesNum, const ch
     int length=0;
     int i=0;
     int j=0;
-    char tempResult[100];
+    char * p;
 
     for (i = 0; i < linesNum; i++) {
+            counter=0;
         for (j = 0; j < linesNum; j++) {
             if (strcmp(textLines[i], textLines[j]) == 0) {
                 counter++;
@@ -20,6 +21,7 @@ char *process (char *resultStr, const char *textLines [], int linesNum, const ch
         if (counter > maxCounter) {
             maxCounter = counter;
             maxIndex = i;
+            maxLength = length;
         }
         if (counter==maxCounter){
         if (length > maxLength){
@@ -28,8 +30,16 @@ char *process (char *resultStr, const char *textLines [], int linesNum, const ch
             }
         }
 
+
+    }
+    if (maxCounter==1){
+        p="0 NULL";
+    sprintf(resultStr, "%s %s", p, extraStr);
+    return resultStr;
+
     }
 
-    sprintf(resultStr, "%d, %s", maxCounter, textLines[maxIndex]);
+
+    sprintf(resultStr, "%d %s", maxCounter, textLines[maxIndex]);
     return resultStr;
 }
