@@ -184,18 +184,8 @@ void lor(int arr1[], int arr2[], int res[], int size){
     for (i = 0; i < size; i++){
         arr1[i] = rand()%2;
         arr2[i] = rand()%2;
-        if (arr1[i]==1 && arr2[i]==1){
-            res[i]=1;
-    }
-        if (arr1[i]==1 && arr2[i]==0){
-            res[i]=1;
-    }
-        if (arr1[i]==0 && arr2[i]==1){
-            res[i]=1;
-    }
-        if (arr1[i]==0 && arr2[i]==0){
-            res[i]=0;
-    }
+    res[i] = arr1[i] || arr2[i];
+
     printf("%d", arr1[i]);
     printf("v%d", arr2[i]);
     printf("=%d ", res[i]);
