@@ -22,6 +22,7 @@ int main(void){
     int arr2[size];
     int res[size];
     int i;
+    system ("color 2");
     srand(time(NULL));
     fillRand1(arr, size);
     printf("\n");

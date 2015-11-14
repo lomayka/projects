@@ -2,56 +2,79 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+enum operations {Pop=-5, Push, Repeat, Continue, Break = -1 };
 int run(int moves[], int movesLen, int res[], int resLen);
-enum operations {push, pop , repeat ,break , Continue , nothing};//
-struct Move {
-enum operations left;
-int right;
-
-};
+int main(void){
+int  movesLen, resLen;
+int moves[] = {2,10,20,10,2};
+movesLen = sizeof(moves)/sizeof(int);
+resLen = sizeof(moves)/sizeof(int);
+int res[resLen];
+printf("%d ", run(moves, movesLen, res, resLen));
+return 0;
+}
 int run(int moves[], int movesLen, int res[], int resLen){
-    currentState=0;
-    struct Move auto[3][3];
-    auto[0][0].left = 11;
-    auto[0][0].right = 1;
-    auto[0][1].left = 55;
-    auto[0][1].right = 2;
-    auto[0][2].left = 101;
-    auto[0][2].right = 3;
-    auto[0][3].left = Continue;
-    auto[0][3].right = 0;
-    auto[1][0].left = nothing;
-    auto[1][0].right = /* */;
-    auto[1][1].left = pop;
-    auto[1][1].right = 1;
-    auto[1][2].left = 1;
-    auto[1][2].right = 2;
-    auto[1][3].left = nothing;
-    auto[1][3].right = /* */;
-    auto[2][0].left = pop;
-    auto[2][0].right = 0;
-    auto[2][1].left = 5;
-    auto[2][1].right = 3;
-    auto[2][2].left = repeat;
-    auto[2][2].right = 1
-    auto[2][2].left = 11;
-    auto[2][2].right = 2;
-    auto[3][0].left = nothing ;
-    auto[3][0].right = /* */;
-    auto[3][1].left = nothing ;
-    auto[3][1].right = /* */;
-    auto[3][2].left = break ;
-    auto[3][2].right = /* */;
-    auto[3][3].left = 2 ;
-    auto[3][3].right = 1;
-
-
+int i, a, j, n = 0, current_state = 0;
+int state[][4]={{1,2,3,0},
+                {-1,1,2,-1},
+                {0,3,1,2},
+                {-1,-1,-1,2}};
+int operation[][4]={{11,55,101,Continue},
+                {-1,Pop,1,-1},
+                {Pop,5,Repeat,11},
+                {-1,-1,-1,2}};
+for (i = resLen-1; i >= j; i-- ){
+    res[i] = 0;
+}
+for (i = 0; i < movesLen; i++){
+switch (moves[i]){
+case 2: a = 0;
+    break;
+case 10: a = 1;
+    break;
+case 20: a = 2;
+    break;
+case 200: a = 3;
+    break;
+default: a = 4;
+break;
 
 }
+if (a == 4){
+    break;
+}
+if (operation[current_state][a] == Pop){
+    //res[j] = 0;
+    if (j!=0){
+    n--;
+    }
+    else{
+        return n;
+    }
+}
+else {
+    if (operation[current_state][a] == Continue){
 
 
-
-int main(void){
-
-
+    }
+    else {
+        if(operation[current_state][a] == Repeat){
+                i--;
+        }
+        else{
+            if(operation[current_state][a] == Break){
+                printf("Result: ");
+                return n;
+                }
+            else {
+            res[j] = a;
+            j++;
+            n++;
+           // printf("%d ", n);
+            }
+        }
+    }
+}
+current_state = state[current_state][a];
+}
 }
