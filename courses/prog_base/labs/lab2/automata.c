@@ -2,19 +2,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum operations {Pop=-5, Push, Repeat, Continue, Break = -1 };
+enum operations {Pop=-5, Push, Repeat, Continue, Break };
 int run(int moves[], int movesLen, int res[], int resLen);
 int main(void){
-int  movesLen, resLen;
-int moves[] = {2,10,20,10,2};
+int  movesLen, resLen, i, result;
+int moves[] = {2,10,20,10,200,20,2};
 movesLen = sizeof(moves)/sizeof(int);
 resLen = sizeof(moves)/sizeof(int);
 int res[resLen];
-printf("%d ", run(moves, movesLen, res, resLen));
+for ( i = 0; i < movesLen; i++){
+    printf("%d ", moves[i]);
+}
+
+result = run(moves, movesLen, res, resLen);
+printf("\n");
+for (i = 0; i < movesLen; i++){
+    printf("%d ", res[i]);
+}
+printf("\n");
+printf("Result: ");
+printf("%d ", result);
 return 0;
 }
 int run(int moves[], int movesLen, int res[], int resLen){
-int i, a, j, n = 0, current_state = 0;
+int i, a, j = 0, n = 0, current_state = 0;
 int state[][4]={{1,2,3,0},
                 {-1,1,2,-1},
                 {0,3,1,2},
@@ -44,7 +55,6 @@ if (a == 4){
     break;
 }
 if (operation[current_state][a] == Pop){
-    //res[j] = 0;
     if (j!=0){
     n--;
     }
@@ -63,14 +73,12 @@ else {
         }
         else{
             if(operation[current_state][a] == Break){
-                printf("Result: ");
                 return n;
                 }
             else {
-            res[j] = a;
+            res[j-1] = operation[current_state][a];
             j++;
             n++;
-           // printf("%d ", n);
             }
         }
     }

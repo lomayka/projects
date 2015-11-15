@@ -22,7 +22,6 @@ int main(void){
     int arr2[size];
     int res[size];
     int i;
-    system ("color 2");
     srand(time(NULL));
     fillRand1(arr, size);
     printf("\n");
@@ -136,8 +135,8 @@ int maxOccurance(int arr[], int size){
 int diff(int arr1[], int arr2[], int res[], int size){
     int i = 0, result = 0;
     for (i = 0; i < size; i++){
-        arr1[i] = i;
-        arr2[i] = i;
+        arr1[i] = rand()%3;
+        arr2[i] = rand()%3;
         res[i]=arr1[i]-arr2[i];
         result+=abs(res[i]);
     }
@@ -154,8 +153,8 @@ void add(int arr1[], int arr2[], int res[], int size){
     int i = 0;
      printf("res: ");
     for (i = 0; i < size; i++){
-        arr1[i] = i;
-        arr2[i] = i;
+        arr1[i] = rand()% 50;
+        arr2[i] = rand()% 50;
         res[i]=arr1[i]+arr2[i];
         printf("%d ", res[i]);
     }
@@ -163,8 +162,8 @@ void add(int arr1[], int arr2[], int res[], int size){
 int eq(int arr1[], int arr2[], int size){
     int i = 0, counter = 0;
     for (i = 0; i < size; i++){
-        arr1[i] = i;
-        arr2[i] = i;
+        arr1[i] = rand()%3;
+        arr2[i] = rand()%3;
         if (arr1[i]==arr2[i]){
             counter++;
         }

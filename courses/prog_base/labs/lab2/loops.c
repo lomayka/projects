@@ -3,7 +3,7 @@
 double calc (int n, int m);
 int main(){
     int n,m;
-    printf("Enter n, m: ");
+    printf("Enter n and m: ");
     scanf("%d%d", &n, &m);
     printf("%f", calc(n,m));
 }
