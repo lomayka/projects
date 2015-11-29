@@ -620,7 +620,7 @@ void command ( char com[], char str[], char str1[]){
     pos.Y = 6;
     SetConsoleCursorPosition(hConsole, pos);
     SetConsoleTextAttribute(hConsole, fmt3);
-    for (i = 1; i < value; i++){
+    for (i = 1; i <=value; i++){
         if (value % i == 0){
             printf("%d ", i);
         }
