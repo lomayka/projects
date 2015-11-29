@@ -13,19 +13,19 @@ FILE * fp = fopen(pread, "r");
     N = atoi(b);
     b = strtok(NULL,",");
     p = atoi(b);
-    min = p;
+    //min = p;
     for (m = 0; m < N-1; m++){
     b = strtok(NULL,",");
-    p = atoi(b);
-    if (p < min){
-        min = p;
-        min_index = m;
+    d = atoi(b);
+    if (p > d){
+        p = d;
     }
+
     }
 fclose(fp);
 fflush(fp);
 FILE * pf = fopen(pwrite, "w");
-fprintf(pf,"%d",min_index);
+fprintf(pf,"%d",p);
 fclose(pf);
 
 }
