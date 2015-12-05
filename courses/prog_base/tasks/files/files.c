@@ -1,31 +1,46 @@
+/*#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+void fprocess(const char * pread, const char * pwrite);
+int main()
+{
+    char * pread = "in.txt";
+    char * pwrite = "out.txt";
+   fprocess(pread,pwrite);
+   return 0;
+}*/
 void fprocess(const char * pread, const char * pwrite){
-
 FILE * fp = fopen(pread, "r");
-    char * b ;
-    char * s;
-    int  N = 0, m = 0,n = 1;
-    int p = 0, d, min, min_index;
-    while (n <= 10){
-    fgets(b,100,fp);
+int n = 0, N = 0, p = 0, min = 0, min_index = 0;
+char * str;
+char * a;
+str = malloc(100*sizeof(char));
+n = 0;
+ while (n < 10){
+    fgets(str,100,fp);
     n++;
     }
-    b = strtok(b," ");
-    N = atoi(b);
-    b = strtok(NULL,",");
-    p = atoi(b);
-    //min = p;
-    for (m = 0; m < N-1; m++){
-    b = strtok(NULL,",");
-    d = atoi(b);
-    if (p > d){
-        p = d;
+    str = strtok(str," ");
+    N = atoi(str);
+        str = strtok(NULL,",");
+        p = atoi(str);
+        min = p;
+    for (int i = 1; i < N; i++){
+        str = strtok(NULL,",");
+        p = atoi(str);
+        if (p < min){
+            min = p;
+            min_index = i;
+        }
     }
 
-    }
+
+
 fclose(fp);
 fflush(fp);
 FILE * pf = fopen(pwrite, "w");
-fprintf(pf,"%d",p);
+fprintf(pf,"%d",min_index);
+
 fclose(pf);
 
 }
