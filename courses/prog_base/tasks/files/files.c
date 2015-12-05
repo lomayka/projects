@@ -42,5 +42,5 @@ FILE * pf = fopen(pwrite, "w");
 fprintf(pf,"%d",min_index);
 
 fclose(pf);
-
+free(str);
 }
