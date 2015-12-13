@@ -15,8 +15,10 @@ int firstnspace(const char * pf, const char * pc) {
 }
 
 int main(){
-char * str = "  Batman  ";
-printf("%i", firstnspace(str, str + strlen(str) - 1)- lastnspace(str, str + strlen(str) - 1));
+char str [30];
+printf("Please, enter your string: ");
+gets(str);
+printf("Result: %i", firstnspace(str, str + strlen(str) - 1)- lastnspace(str, str + strlen(str) - 1));
 return 0;
 }
 
