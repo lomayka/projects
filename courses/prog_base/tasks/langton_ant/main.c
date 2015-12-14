@@ -34,7 +34,7 @@ int white =  BACKGROUND_BLUE | BACKGROUND_GREEN |BACKGROUND_RED | BACKGROUND_INT
     }
     direction = 2;
 print(1,1,red_w);
-printf("Please, set the size of your console 120 * 150.\n Press any key to continue");
+printf("Please, set the size of your console 120 * 150. \n Press any key to continue");
 getch();
 system("cls");
 for (int y = 0; y < 120; y++){    // just to be sure
