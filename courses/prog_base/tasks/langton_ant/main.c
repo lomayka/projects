@@ -1,6 +1,6 @@
 /*
 
-I set gold color for better visualization, just think that gold and white are equal :) But I will change it if it is unsuitable.
+I set golden color for better visualization, just think that gold and white are equal :) But I will change it if it is unsuitable.
 I hope, I won't get a cat...
 
 */
