@@ -1,7 +1,7 @@
 /*
 
-Зробив золотистий колір для кращої візуалізації, просто вважайте, що золотистий і білий одне й теж, але якщо потрібно то перероблю.
-Сподіваюся, що не отримаю котика.
+Set gold color for better visualization, just think that gold and white are equal :) But I will change it if it is unsuitable.
+I hope, I won't get a cat...
 
 */
 
