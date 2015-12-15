@@ -1,11 +1,7 @@
 /*
-
 I set golden color for better visualization, just think that golden and white are equal :) But I will change it if it is unsuitable.
 I hope, I won't get a cat...
-
 */
-
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,7 +21,7 @@ int red_w = FOREGROUND_RED | FOREGROUND_INTENSITY | BACKGROUND_BLUE | BACKGROUND
 int white =  BACKGROUND_BLUE | BACKGROUND_GREEN |BACKGROUND_RED | BACKGROUND_INTENSITY;
     int mat[100][150];
     int direction;
-    int i = 50, j = 80, speed = 1;
+    int i = 50, j = 80, speed = 1, cnt = 0, n = 1, number = 0;
 
     for(int i = 0; i < 100; i++){
         for (int j = 0; j < 150; j++){
@@ -44,7 +40,7 @@ for (int y = 0; y < 120; y++){    // just to be sure
     }
 }
 print(1,1,red_w);
-printf("Please, use 1-7 to chage speed. Press Enter to stop and any key to continue. Press Esc to exit.");
+printf("Please, use 1-7 to chage speed. Use i to change the iteration. Press Enter to stop and any key to continue. Press Esc to exit.");
 
  while(1){
        if (kbhit()){
@@ -84,8 +80,26 @@ printf("Please, use 1-7 to chage speed. Press Enter to stop and any key to conti
     case 27:
     exit(0);
     break;
+
+    case 'i':
+     print(1,2,red_w);
+     printf("Please, enter the iteration: ");
+      scanf("%d", &number);
+      print(1,2,white);
+      printf("                                             ");
+        break;
                }
        }
+
+    if (cnt < number){
+
+        n = 0;
+    }
+    else {
+        n = 1;
+    }
+
+
     if (100 == i || 150 == j || 0 == i || 0 == j){
         break;
     }
@@ -93,7 +107,7 @@ printf("Please, use 1-7 to chage speed. Press Enter to stop and any key to conti
         mat[i][j] = BLACK;
     print(j,i,red);
     printf("*");
-    usleep(100000/speed);
+    usleep(n*100000/speed);
     print(j,i,mat[i][j]);
     printf(" ");
 
@@ -124,7 +138,7 @@ printf("Please, use 1-7 to chage speed. Press Enter to stop and any key to conti
             mat[i][j] = WHITE;
     print(j,i,red);
     printf("*");
-    usleep(100000/speed);
+    usleep(n*100000/speed);
     print(j,i,mat[i][j]);
     printf(" ");
 
@@ -152,6 +166,7 @@ printf("Please, use 1-7 to chage speed. Press Enter to stop and any key to conti
 
 
      }
+     cnt++;
  }
     return 0;
 }
