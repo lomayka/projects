@@ -89,8 +89,8 @@ for (int i = 0; i < self->size; i++){
 }
 
 list_status list_free(list_t * self){
-free(self);
 free(self->arr);
+free(self);
 return SUCCESSFUL;
 }
 
