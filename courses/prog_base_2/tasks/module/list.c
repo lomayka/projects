@@ -18,7 +18,7 @@ ls->size = 0;
 return ls;
 }
 
-list_status list_add(int val, int size, int index, list_t * self) {
+list_status list_add(list_t * self,int val, int size, int index) {
  if (index > size) {
     return WRONG_INDEX;
  }
@@ -37,7 +37,7 @@ list_status list_add(int val, int size, int index, list_t * self) {
 }
 
 
-list_status list_delete(int size, int index, list_t * self)
+list_status list_delete(list_t * self,int size, int index)
 {
     if (index > size) {
         return WRONG_INDEX;
@@ -82,10 +82,17 @@ for (int i = 1; i < self->size; i++){
 return min;
 }
 
-void test(list_t * self){
+void print_list(list_t * self){
 for (int i = 0; i < self->size; i++){
     printf("%d ", self->arr[i]);
 }
 }
+
+list_status list_free(list_t * self){
+free(self);
+free(self->arr);
+return SUCCESSFUL;
+}
+
 
 

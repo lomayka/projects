@@ -15,13 +15,15 @@ WRONG_INDEX
 
 list_t * list_new();
 
-list_status list_add(int,int,int, list_t *);
-list_status list_delete(int, int, list_t *);
+list_status list_add(list_t *,int,int,int);
+list_status list_delete(list_t *,int, int);
 int list_size(list_t *);
 int list_max(list_t *);
 int list_min(list_t *);
 
-void test(list_t *);
+list_status list_free(list_t *);
+
+void print_list(list_t *);
 
 
 #endif
