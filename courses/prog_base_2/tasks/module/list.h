@@ -15,8 +15,8 @@ WRONG_INDEX
 
 list_t * list_new();
 
-list_status list_add(list_t *,int,int,int);
-list_status list_delete(list_t *,int, int);
+list_status list_add(list_t *,int,int);
+list_status list_delete(list_t *,int);
 int list_size(list_t *);
 int list_max(list_t *);
 int list_min(list_t *);

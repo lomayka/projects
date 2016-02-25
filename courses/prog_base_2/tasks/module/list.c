@@ -18,13 +18,13 @@ ls->size = 0;
 return ls;
 }
 
-list_status list_add(list_t * self,int val, int size, int index) {
- if (index > size) {
+list_status list_add(list_t * self,int val, int index) {
+ if (index > self->size) {
     return WRONG_INDEX;
  }
  else {
-    if (index < size){
-    for (int i = size - 1; i >= index; i--){
+    if (index < self->size){
+    for (int i = self->size - 1; i >= index; i--){
         self->arr[i+1] = self->arr[i];
 
     }
@@ -37,14 +37,14 @@ list_status list_add(list_t * self,int val, int size, int index) {
 }
 
 
-list_status list_delete(list_t * self,int size, int index)
+list_status list_delete(list_t * self, int index)
 {
-    if (index > size) {
+    if (index > self->size) {
         return WRONG_INDEX;
     }
     else {
-        if (index < size){
-            for (int i = index; i < size ; i++ ){
+        if (index < self->size){
+            for (int i = index; i < self->size ; i++ ){
                 self->arr[i] = self->arr[i+1];
             }
         }

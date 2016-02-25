@@ -6,13 +6,13 @@
 int main()
 {
 list_t * ls1 = list_new();
-list_add(ls1,5,list_size(ls1),0);
-list_add(ls1,10,list_size(ls1),1);
-list_add(ls1,4,list_size(ls1),0);
-list_add(ls1,2,list_size(ls1),0);
+list_add(ls1,5,0);
+list_add(ls1,10,1);
+list_add(ls1,4,0);
+list_add(ls1,2,0);
 assert(list_max(ls1) == 10);
 assert(list_size(ls1) == 4);
-list_delete(ls1,list_size(ls1),3);
+list_delete(ls1,3);
 //printf("%d ", list_max(ls1));
 //printf("%d ", list_min(ls1));
 //printf("%d ", list_size(ls1));
