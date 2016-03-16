@@ -13,7 +13,7 @@
 
 
 // hope the names are correct
-static void new_void_listAddDelete(void **state)
+static void new_void_listAddDeleteElement(void **state)
 {
     list_t * ls1 = list_new();
     assert_int_equal(list_add(ls1,ADD,0),SUCCESSFUL);
@@ -23,7 +23,7 @@ static void new_void_listAddDelete(void **state)
     assert_int_equal(list_free(ls1),SUCCESSFUL);
 }
 
-static void new_void_listSizeCheck(void **state)
+static void new_void_listSizeFind(void **state)
 {
     list_t * ls3 = list_new();
     assert_int_equal(list_size(ls3),0);
@@ -34,7 +34,7 @@ static void new_void_listSizeCheck(void **state)
     list_free(ls3);
 }
 
-static void new_void_listMax(void **state)
+static void new_void_listMaxValue(void **state)
 {
     list_t * ls4 = list_new();
     list_add(ls4,ADD,0);
@@ -44,7 +44,7 @@ static void new_void_listMax(void **state)
     list_free(ls4);
 }
 
-static void new_void_listMin(void **state)
+static void new_void_listMinValue(void **state)
 {
     list_t * ls4 = list_new();
     list_add(ls4,ADD,0);
@@ -58,10 +58,10 @@ static void new_void_listMin(void **state)
 int main(void) {
     const struct CMUnitTest tests[] =
     {
-        cmocka_unit_test(new_void_listAddDelete),
-        cmocka_unit_test(new_void_listSizeCheck),
-        cmocka_unit_test(new_void_listMax),
-        cmocka_unit_test(new_void_listMin),
+        cmocka_unit_test(new_void_listAddDeleteElement),
+        cmocka_unit_test(new_void_listSizeFind),
+        cmocka_unit_test(new_void_listMaxValue),
+        cmocka_unit_test(new_void_listMinValue),
     };
     return cmocka_run_group_tests(tests, NULL, NULL);
 }
