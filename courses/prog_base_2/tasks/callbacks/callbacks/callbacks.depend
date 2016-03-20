@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1458481338 source:d:\progs\op\projects\courses\prog_base_2\tasks\callbacks\callbacks\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
