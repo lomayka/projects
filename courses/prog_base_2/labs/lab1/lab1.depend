@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1458742352 source:d:\progs\op\practice\lab1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stddef.h>
+	<setjmp.h>
+	<cmocka.h>
+	"OS.h"
+	"program.h"
+
+1458396400 d:\progs\op\practice\lab1\os.h
+	<stdlib.h>
+	"program.h"
+
+1457364985 source:d:\progs\op\practice\lab1\program.c
+
+1458740751 source:d:\progs\op\practice\lab1\os.c
+	"OS.h"
+	<stdlib.h>
+	<string.h>
+	"program.h"
+
+1458394988 d:\progs\op\practice\lab1\program.h
+	<stdlib.h>
+
