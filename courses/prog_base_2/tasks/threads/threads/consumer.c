@@ -5,17 +5,16 @@
 #include <windows.h>
 #include <conio.h>
 #include "mutex.h"
+#include "array.h"
 
-
-mutex_t *  hMutex;
-module_t * new_comsumer(mutex_t * mutex,int arr[])
+module_t * new_comsumer(mutex_t * mutex)
 {
-    hMutex = mutex;
+    LPVOID args = (LPVOID)mutex;
     HANDLE hWriteThread = CreateThread(
                              NULL,               // default security attributes
                              0,                  // default stack size
                              (LPTHREAD_START_ROUTINE) threadRead,
-                             NULL,               // no thread function arguments
+                              (LPVOID) args,               // no thread function arguments
                              0,                  // default creation flags
                              NULL);// receive thread identifier
 
@@ -29,6 +28,7 @@ CloseHandle(consumer);
 
 
 DWORD threadRead(LPVOID args) {
+   mutex_t * hMutex = (mutex_t*)args;
     while(1){
    WaitForSingleObject(hMutex, INFINITE);
     if (getArray(0) > getArray(1) && getArray(1) > getArray(2) ){
@@ -38,7 +38,9 @@ DWORD threadRead(LPVOID args) {
         printf("\n");
         Sleep(10);
     }
-    else printf("Array is increasing\n");
+    else {
+        printf("Array is increasing\n");
+    }
 ReleaseMutex(hMutex);
     }
 

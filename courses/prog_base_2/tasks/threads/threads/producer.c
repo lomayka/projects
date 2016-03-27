@@ -6,17 +6,16 @@
 #include <conio.h>
 #include "mutex.h"
 #include <time.h>
+#include "array.h"
 
 
-mutex_t *  hMutex;
-
-module_t * new_producer(mutex_t * mutex,int arr[])
-{   hMutex = mutex;
+module_t * new_producer(mutex_t * mutex)
+{   LPVOID args = (LPVOID)mutex;
     HANDLE hReadThread = CreateThread(
                              NULL,               // default security attributes
                              0,                  // default stack size
                              (LPTHREAD_START_ROUTINE) threadWrite,
-                             NULL,               // no thread function arguments
+                             (LPVOID) args ,               // no thread function arguments
                              0,                  // default creation flags
                              NULL);// receive thread identifier
 
@@ -30,6 +29,7 @@ CloseHandle(producer);
 
 
 DWORD threadWrite(LPVOID args) {
+mutex_t * hMutex = (mutex_t*)args;
 srand(time(NULL));
 while(1){
 

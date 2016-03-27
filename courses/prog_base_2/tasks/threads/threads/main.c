@@ -9,14 +9,13 @@
 #include "array.h"
 
 
-
-int main(void) {    // vse krivo, ale ya staravsya
+int main(void) {// vse krivo, ale ya staravsya, 4esno
     mutex_t * m1 = new_mutex();
-    module_t * p1 = new_producer(m1,getArr());
-    module_t * p2 = new_producer(m1,getArr());
-    module_t * p3 = new_producer(m1,getArr());
-    module_t * c1 = new_comsumer(m1,getArr());
-    module_t * c2 = new_comsumer(m1,getArr());
+    module_t * p1 = new_producer(m1);
+    module_t * p2 = new_producer(m1);
+    module_t * p3 = new_producer(m1);
+    module_t * c1 = new_comsumer(m1);
+    module_t * c2 = new_comsumer(m1);
 
     WaitForSingleObject(p1, INFINITE);
     free_producer(p1);

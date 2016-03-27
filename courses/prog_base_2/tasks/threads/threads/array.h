@@ -6,3 +6,5 @@
 
 int getArray(int index);
 void setArray(int index, int value);
+int * getArr();
+
