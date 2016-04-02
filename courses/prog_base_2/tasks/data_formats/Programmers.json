@@ -7,6 +7,9 @@
 			"company": "Google",
 			"position": "Developer"
 		},
+		"hired": 2011,
+		"rating": 9.6,
+		"language": "Java",
 		"projects": [
 		{
 		  "name": "Chrome OS",
@@ -22,10 +25,8 @@
 		  "spendHours":2400,
 		  "percent": 85
 		}
-                    ],
-		"hired": 2011,
-		"rating": 9.6,
-		"language": "Java"
+                    ]
+		
 	},
 	{
 		
@@ -36,6 +37,9 @@
 			"company": "Microsoft",
 			"position": "Software engineer"
 		},
+		"hired": 2014,
+		"rating": 9.8,
+		"language": "C#",
 		"projects": [
 		{
 		  "name": "Windows 10",
@@ -51,10 +55,7 @@
 		  "spendHours":490,
 		  "percent": 65
 		}
-                    ],
-		"hired": 2014,
-		"rating": 9.8,
-		"language": "C#"
+                    ]
 	},
 	
 	{
@@ -63,9 +64,12 @@
 		"surname": "Fisher",
 		"birthdate": "1991-04-06",
 		"working": {
-			"company": "Valve",
+			"company": "Rocksteady",
 			"position": "Game developer"
 		},
+		"hired": 2009,
+		"rating": 9.7,
+		"language": "C++",
 		"projects": [
 		{
 		  "name": "Batman Arkham City",
@@ -81,9 +85,7 @@
 		  "spendHours":1400,
 		  "percent": 55
 		}
-                    ],
-		"hired": 2009,
-		"rating": 9.7,
-		"language": "C++"
+                    ]
+		
 	}
 ]
