@@ -1,10 +1,19 @@
 #include <SFML/Graphics.hpp>
 
+using namespace sf;//включаем пространство имен sf, чтобы постоянно не писать sf::
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "My game");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	RenderWindow window(sf::VideoMode(620, 420), "Lesson 3. kychka-pc.ru"); 
+
+	Image heroimage; 
+	heroimage.loadFromFile("images/fon.png");
+
+	Texture herotexture;
+	herotexture.loadFromImage(heroimage);
+
+	Sprite herosprite;
+	herosprite.setTexture(herotexture);
+	herosprite.
 
 	while (window.isOpen())
 	{
@@ -14,9 +23,9 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		 
+
 		window.clear();
-		window.draw(shape);
+		window.draw(herosprite);//выводим спрайт на экран
 		window.display();
 	}
 
