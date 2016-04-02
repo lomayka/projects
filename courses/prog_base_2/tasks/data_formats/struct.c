@@ -17,7 +17,7 @@ char  position[15];
 char language[15];
 int hired;
 double rating;
-project prog[2];
+struct Project prog[2];
 };
 
 programmer * progr_create(){
