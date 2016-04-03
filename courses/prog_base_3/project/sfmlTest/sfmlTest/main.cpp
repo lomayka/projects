@@ -1,9 +1,9 @@
 #include <SFML/Graphics.hpp>
 
-using namespace sf;//включаем пространство имен sf, чтобы постоянно не писать sf::
+using namespace sf;
 int main()
 {
-	RenderWindow window(sf::VideoMode(620, 420), "Lesson 3. kychka-pc.ru"); 
+	RenderWindow window(VideoMode(1600,900), "Test"); 
 
 	Image heroimage; 
 	heroimage.loadFromFile("images/fon.png");
@@ -13,19 +13,19 @@ int main()
 
 	Sprite herosprite;
 	herosprite.setTexture(herotexture);
-	herosprite.
+	herosprite.setPosition(0, 0);
 
 	while (window.isOpen())
 	{
-		sf::Event event;
+		Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == Event::Closed)
 				window.close();
 		}
 
 		window.clear();
-		window.draw(herosprite);//выводим спрайт на экран
+		window.draw(herosprite);
 		window.display();
 	}
 
