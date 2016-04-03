@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cJSON.h"
+#include <stdio.h>
 #include "parse.h"
+#include "struct.h"
 
 void parse(char * text, programmer ** p)
 {
