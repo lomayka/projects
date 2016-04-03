@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <conio.h>
 
 using namespace sf;
 int main()
@@ -24,26 +25,22 @@ int main()
 	Sprite spaceshipsprite;
 	spaceshipsprite.setTexture(spaceshiptexture);
 	spaceshipsprite.setPosition(20, 40);
-	int i = 0, j = 0;
+	int i = 0;
 	while (window.isOpen())
 	{
+
 		Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
 				window.close();
 		}
-
 		window.clear();
 		window.draw(fonsprite);
-		spaceshipsprite.setPosition(2+i, 40);
+		spaceshipsprite.setPosition(20 + i, 40);
 		window.draw(spaceshipsprite);
 		window.display();
-		j++;
-		if (j % 100 == 0){
-			i++;
-		}
+		if (Keyboard::isKeyPressed(Keyboard::Right)) i++;
 	}
-
 	return 0;
 }
