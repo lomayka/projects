@@ -5,16 +5,26 @@ int main()
 {
 	RenderWindow window(VideoMode(1600,900), "Test"); 
 
-	Image heroimage; 
-	heroimage.loadFromFile("images/fon.png");
+	Image fon; 
+	fon.loadFromFile("images/fon.png");
 
-	Texture herotexture;
-	herotexture.loadFromImage(heroimage);
+	Texture fontexture;
+	fontexture.loadFromImage(fon);
 
-	Sprite herosprite;
-	herosprite.setTexture(herotexture);
-	herosprite.setPosition(0, 0);
+	Sprite fonsprite;
+	fonsprite.setTexture(fontexture);
+	fonsprite.setPosition(0, 0);
 
+	Image spaceship;
+	spaceship.loadFromFile("images/spaceship.png");
+
+	Texture spaceshiptexture;
+	spaceshiptexture.loadFromImage(spaceship);
+
+	Sprite spaceshipsprite;
+	spaceshipsprite.setTexture(spaceshiptexture);
+	spaceshipsprite.setPosition(20, 40);
+	int i = 0, j = 0;
 	while (window.isOpen())
 	{
 		Event event;
@@ -25,8 +35,14 @@ int main()
 		}
 
 		window.clear();
-		window.draw(herosprite);
+		window.draw(fonsprite);
+		spaceshipsprite.setPosition(2+i, 40);
+		window.draw(spaceshipsprite);
 		window.display();
+		j++;
+		if (j % 100 == 0){
+			i++;
+		}
 	}
 
 	return 0;
