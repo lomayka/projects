@@ -1,8 +1,7 @@
 # depslib dependency file v1.0
-1459598907 source:d:\progs\op\projects\courses\prog_base_2\tasks\data_formats\main.c
+1459719450 source:d:\progs\op\projects\courses\prog_base_2\tasks\data_formats\main.c
 	<stdio.h>
 	<stdlib.h>
-	"cJSON.h"
 	"struct.h"
 
 1459591320 source:d:\progs\op\projects\courses\prog_base_2\tasks\data_formats\cjson.c
@@ -17,7 +16,7 @@
 
 1459591377 d:\progs\op\projects\courses\prog_base_2\tasks\data_formats\cjson.h
 
-1459598566 source:d:\progs\op\projects\courses\prog_base_2\tasks\data_formats\struct.c
+1459599240 source:d:\progs\op\projects\courses\prog_base_2\tasks\data_formats\struct.c
 	<stdio.h>
 	"struct.h"
 
