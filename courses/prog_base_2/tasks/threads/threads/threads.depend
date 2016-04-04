@@ -1,0 +1,79 @@
+# depslib dependency file v1.0
+1459107988 source:d:\progs\op\projects\courses\prog_base_2\tasks\threads\threads\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	"producer.h"
+	"consumer.h"
+	"mutex.h"
+	"array.h"
+
+1459107940 source:d:\progs\op\projects\courses\prog_base_2\tasks\threads\threads\producer.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"producer.h"
+	<windows.h>
+	<conio.h>
+	"mutex.h"
+	<time.h>
+	"array.h"
+
+1459107921 d:\progs\op\projects\courses\prog_base_2\tasks\threads\threads\producer.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	"mutex.h"
+
+1459107952 source:d:\progs\op\projects\courses\prog_base_2\tasks\threads\threads\consumer.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"consumer.h"
+	<windows.h>
+	<conio.h>
+	"mutex.h"
+	"array.h"
+
+1459107946 d:\progs\op\projects\courses\prog_base_2\tasks\threads\threads\consumer.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	"mutex.h"
+
+1459106153 source:d:\progs\op\projects\courses\prog_base_2\tasks\threads\threads\mutex.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	"mutex.h"
+
+1459106142 d:\progs\op\projects\courses\prog_base_2\tasks\threads\threads\mutex.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1459106617 d:\progs\op\projects\courses\prog_base_2\tasks\threads\threads\array.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+
+1459106987 source:d:\progs\op\projects\courses\prog_base_2\tasks\threads\threads\array.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	"array.h"
+

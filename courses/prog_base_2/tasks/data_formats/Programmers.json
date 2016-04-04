@@ -1,0 +1,91 @@
+[
+	{
+		"name": "James",
+		"surname": "McGill",
+		"birthdate": "1990-05-11",
+		"working": {
+			"company": "Google",
+			"position": "Developer"
+		},
+		"hired": 2011,
+		"rating": 9.6,
+		"language": "Java",
+		"projects": [
+		{
+		  "name": "Chrome OS",
+		  "started": "2011-12-11",
+		  "release": "2013-09-12",
+		  "spendHours": 2000,
+		  "percent": 80
+		},
+		{
+		  "name": "Chrome 4.1",
+		  "started": "2013-10-15 ",
+		  "release": "2015-08-20",
+		  "spendHours":2400,
+		  "percent": 85
+		}
+                    ]
+		
+	},
+	{
+		
+		"name": "Colin",
+		"surname": "Ericson",
+		"birthdate": "1994-07-02",
+		"working": {
+			"company": "Microsoft",
+			"position": "Software engineer"
+		},
+		"hired": 2014,
+		"rating": 9.8,
+		"language": "C#",
+		"projects": [
+		{
+		  "name": "Windows 10",
+		  "started": "2012-08-17",
+		  "release": "2015-10-19",
+		  "spendHours": 3200,
+		  "percent": 90
+		},
+		{
+		  "name": "Bash",
+		  "started": "2015-11-10",
+		  "release": "2016-03-28",
+		  "spendHours":490,
+		  "percent": 65
+		}
+                    ]
+	},
+	
+	{
+		
+		"name": "Marcus",
+		"surname": "Fisher",
+		"birthdate": "1991-04-06",
+		"working": {
+			"company": "Rocksteady",
+			"position": "Game developer"
+		},
+		"hired": 2009,
+		"rating": 9.7,
+		"language": "C++",
+		"projects": [
+		{
+		  "name": "Batman Arkham City",
+		  "started": "2010-06-24",
+		  "release": "2012-10-14",
+		  "spendHours": 1800,
+		  "percent": 70
+		},
+		{
+		  "name": "Batman Arkham Knight",
+		  "started": "2013-03-10",
+		  "release": "2015-07-18",
+		  "spendHours":1400,
+		  "percent": 55
+		}
+                    ]
+		
+	}
+]

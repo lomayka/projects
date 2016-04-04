@@ -1,0 +1,10 @@
+void play(int oct, int play, int time);
+void keys(int x, int yo, int y1);
+void fill_b(int i, int color);
+void fill_w_1(int i, int color);
+void fill_w_2(int i, int color);
+void fill_w_3(int i, int color);
+void print(int x, int y, int color);
+void print_note(int note);
+void record(int oct,int note, int t, int j, int i);
+void jingle_bells();
