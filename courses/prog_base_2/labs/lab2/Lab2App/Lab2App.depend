@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1459884435 source:d:\progs\op\projects\courses\prog_base_2\labs\lab2\lab2app\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<windows.h>
+	"stack.h"
+
+1459883820 d:\progs\op\projects\courses\prog_base_2\labs\lab2\lab2app\stack.h
+
