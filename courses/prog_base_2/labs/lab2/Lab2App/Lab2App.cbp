@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="../Lab2StaticLib" />
 				</Compiler>
 				<Linker>
 					<Add library="../Lab2StaticLib/bin/Debug/libLab2StaticLib.a" />
@@ -37,7 +38,6 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="stack.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

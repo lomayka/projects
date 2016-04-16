@@ -16,6 +16,7 @@
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-g" />
+					<Add directory="C:/Progs/OP/projects/courses/prog_base_2/labs/lab2/Lab2StaticLib/" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
