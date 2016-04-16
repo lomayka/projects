@@ -40,10 +40,20 @@ int main(void) {
     srand(time(NULL));
     for (int i = 0; i < MAX_STACK_SIZE;i++){
         stack_push(stack,rand()%150 - 50);
+<<<<<<< HEAD
         printStack(stack);
         if (dll->cmp(stack)) dll->react(stack);
 
     }
+=======
+        if (dll->cmp(stack)){
+            dll->react(stack);
+            }
+        printStack(stack);
+        printf("\n");
+    }
+
+>>>>>>> 8a9bb6f10bc4f162e559c65267508907bc50419c
     stack_free(stack);
     dynamic_clean(dll);
     return 0;
