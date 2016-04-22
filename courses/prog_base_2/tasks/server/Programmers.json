@@ -1,0 +1,40 @@
+[
+	{
+		"name": "James",
+		"surname": "McGill",
+		"birthdate": "1990-05-11",
+		"working": {
+			"company": "Google",
+			"position": "Developer"
+		},
+		"hired": 2011,
+		"rating": 9.6
+		
+	},
+	{
+		
+		"name": "Colin",
+		"surname": "Ericson",
+		"birthdate": "1994-07-02",
+		"working": {
+			"company": "Microsoft",
+			"position": "Software engineer"
+		},
+		"hired": 2014,
+		"rating": 9.8
+	},
+	
+	{
+		
+		"name": "Marcus",
+		"surname": "Fisher",
+		"birthdate": "1991-04-06",
+		"working": {
+			"company": "Rocksteady",
+			"position": "Game developer"
+		},
+		"hired": 2009,
+		"rating": 9.7
+		
+	}
+]
