@@ -1,0 +1,77 @@
+<Programmers>
+<Programmer>
+<name>James</name>
+<surname>McGill</surname>
+<birthdate>1990-05-11</birthdate>
+<company position="Developer">Google</company>
+<projects>
+<project>
+<name>Chrome OS</name>
+<started>2011-12-11</started>
+<releaseDate>2013-09-12</releaseDate>
+<spendHours>2000</spendHours>
+<percent>80</percent>
+</project>
+<project>
+<name>Chrome 4.1</name>
+<started>2013-10-15</started>
+<releaseDate>2015-08-20</releaseDate>
+<spendHours>2400</spendHours>
+<percent>85</percent>
+</project>
+</projects>
+<language>Java</language>
+<hired>2011</hired>
+<rating>9.8</rating>
+</Programmer>
+<Programmer>
+<name>Colin</name>
+<surname>Ericson</surname>
+<birthdate>1994-07-02</birthdate>
+<company position="Software engineer">Microsoft</company>
+<projects>
+<project>
+<name>Windows 10</name>
+<started>2012-08-17</started>
+<releaseDate>2015-10-19</releaseDate>
+<spendHours>3200</spendHours>
+<percent>90</percent>
+</project>
+<project>
+<name>Bash</name>
+<started>2015-11-10</started>
+<releaseDate>2016-03-28</releaseDate>
+<spendHours>490</spendHours>
+<percent>65</percent>
+</project>
+</projects>
+<language>C#</language>
+<hired>2014</hired>
+<rating>9.4</rating>
+</Programmer>
+<Programmer>
+<name>Marcus</name>
+<surname>Fisher</surname>
+<birthdate>1991-04-06</birthdate>
+<company position="Game developer">Rocksteady</company>
+<projects>
+<project>
+<name>Batman Arkham City</name>
+<started>2010-06-24</started>
+<releaseDate>2012-10-14</releaseDate>
+<spendHours>1800</spendHours>
+<percent>70</percent>
+</project>
+<project>
+<name>Batman Arkham Knight</name>
+<started>2013-03-10</started>
+<releaseDate>2015-07-18</releaseDate>
+<spendHours>1400</spendHours>
+<percent>55</percent>
+</project>
+</projects>
+<language>C++</language>
+<hired>2009</hired>
+<rating>9.7</rating>
+</Programmer>
+</Programmers>

@@ -1,0 +1,55 @@
+# depslib dependency file v1.0
+1460720710 source:d:\progs\op\projects\courses\prog_base_2\tasks\server\server\main.c
+	<stdio.h>
+	<stdlib.h>
+	"socket.h"
+
+1460715921 d:\progs\op\projects\courses\prog_base_2\tasks\server\server\socket.h
+
+1460715909 source:d:\progs\op\projects\courses\prog_base_2\tasks\server\server\socket.c
+	<winsock2.h>
+	"socket.h"
+
+1460814714 source:d:\progs\op\projects\courses\prog_base_2\tasks\server\server1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	"server.h"
+
+1460715921 d:\progs\op\projects\courses\prog_base_2\tasks\server\server1\socket.h
+
+1460735950 source:d:\progs\op\projects\courses\prog_base_2\tasks\server\server1\socket.c
+	<winsock2.h>
+	"socket.h"
+
+1460814096 d:\progs\op\projects\courses\prog_base_2\tasks\server\server1\server.h
+	"socket.h"
+	"cJSON.h"
+
+1460819142 source:d:\progs\op\projects\courses\prog_base_2\tasks\server\server1\server.c
+	<stddef.h>
+	<stdio.h>
+	"server.h"
+	"cJSON.h"
+	"programmers.h"
+
+1459591320 source:d:\progs\op\projects\courses\prog_base_2\tasks\server\server1\cjson.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1459591377 d:\progs\op\projects\courses\prog_base_2\tasks\server\server1\cjson.h
+
+1460817042 source:d:\progs\op\projects\courses\prog_base_2\tasks\server\server1\programmers.c
+	<stdlib.h>
+	<stdio.h>
+	"cJSON.h"
+	"programmers.h"
+
+1460816010 d:\progs\op\projects\courses\prog_base_2\tasks\server\server1\programmers.h
+

@@ -1,0 +1,12 @@
+[
+{
+"status": "SUCCESS",
+"description": "Operation succeed"
+},
+{
+"status": "DELETE ERROR",
+"description": "Cannot delete or element doesn't exist"
+
+}
+
+]
