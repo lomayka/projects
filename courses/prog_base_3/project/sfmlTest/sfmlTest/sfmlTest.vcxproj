@@ -85,6 +85,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PointF.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PointF.h" />
+    <ClInclude Include="SpaceShip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
