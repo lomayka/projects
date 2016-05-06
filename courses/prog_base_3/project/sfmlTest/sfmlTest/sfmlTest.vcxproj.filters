@@ -29,5 +29,8 @@
     <ClInclude Include="SpaceShip.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="View.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -23,4 +23,9 @@ public: std::string name;
 	SpaceShip(){
 
 	}
+public: 
+	PointF getSpaceShipPosotion(){
+		return this->position;
+	}
+
 };
