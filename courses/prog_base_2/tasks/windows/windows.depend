@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1463379715 source:d:\progs\op\projects\courses\prog_base_2\tasks\windows\main.c
+	<windows.h>
+	<CommCtrl.h>
+	"resource.h"
+	<stdio.h>
+	<stdlib.h>
+
+1463374357 source:d:\progs\op\projects\courses\prog_base_2\tasks\windows\resource.rc
+	<windows.h>
+	<commctrl.h>
+	<richedit.h>
+	"resource.h"
+
+1463167754 d:\progs\op\projects\courses\prog_base_2\tasks\windows\resource.h
+
