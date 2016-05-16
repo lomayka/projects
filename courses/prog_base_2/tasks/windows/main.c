@@ -3,16 +3,14 @@
 #include "resource.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-
-
+#include <string.h>
+const char g_szClassName[] = "myWindowClass";
 typedef struct Programmer
 {
     char name[256];
     char surname[256];
     char language[256];
     char company[256];
-    double rating;
 } programmer_t;
 
 enum {
@@ -27,14 +25,11 @@ enum {
     ID_CB,
 };
 
-const char g_szClassName[] = "myWindowClass";
 
 HINSTANCE hInst;
-WNDPROC OldButtonProc;
-
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
-LRESULT CALLBACK ButtonProc (HWND hwnd, UINT msg, WPARAM wp, LPARAM lp);
 BOOL CALLBACK DlgMain(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
+programmer_t programmer;
 
 int WINAPI WinMain(
                    HINSTANCE hInstance,
@@ -95,127 +90,107 @@ int WINAPI WinMain(
     return Msg.wParam;
 }
 
-programmer_t programmer;
 
-LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    static HWND hButton, hButtonSave;
-    static HWND hStatic;
-   static HWND hGroupBox;
-     static HWND hStaticNameT, hStaticSurnameT, hStaticLanguageT, hStaticCompanyT;
-     static HWND hEditName, hEditSurname, hEditLanguage, hEditCompany;
- int checked = 0;
- LPCSTR type;
-
-
+LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+    static HWND hGroupBox,hButton, hStaticNameT, hStaticSurnameT, hEditLastName, hStaticLanguageT, hStaticCompanyT,hCheckBox;
+     static HWND hEditName,hEditSurname,hEditLanguage,hEditCompany;
+    HINSTANCE hInstance = GetModuleHandle(NULL);
     switch(msg)
     {
-
-        case WM_CREATE:
-            CreateWindowW(L"button", L"Change",
-                      WS_VISIBLE | WS_CHILD | BS_CHECKBOX | BS_AUTOCHECKBOX,
-                      210, 210, 105, 15,
-                      hwnd, (HMENU)ID_CB, NULL, NULL);
-         CheckDlgButton(hwnd, ID_CB, BST_CHECKED);
-
-
-
-              hGroupBox = CreateWindow(WC_BUTTON, "Programmer",
+    case WM_CREATE:
+        hGroupBox = CreateWindow(WC_BUTTON, "Programmer",
                                  WS_CHILD | WS_VISIBLE | BS_GROUPBOX | WS_GROUP,
                                  20, 10, 270, 150,
                                  hwnd, NULL, hInst, NULL);
-              hStaticNameT = CreateWindowEx(0, WC_STATIC, "Name:",
+        hStaticNameT = CreateWindowEx(0, WC_STATIC, "Name:",
                                       WS_CHILD | WS_VISIBLE,
                                       15, 20, 45, 18,
-                                     hGroupBox, NULL, hInst, NULL);
-               hStaticSurnameT = CreateWindowEx(0, WC_STATIC, "Surname:",
-                                      WS_CHILD | WS_VISIBLE,
-                                      15, 45, 65, 18,
-                                     hGroupBox, NULL, hInst, NULL);
-                hStaticLanguageT = CreateWindowEx(0, WC_STATIC, "Language:",
-                                      WS_CHILD | WS_VISIBLE,
-                                      15, 70, 72, 18,
-                                     hGroupBox, NULL, hInst, NULL);
-                hStaticCompanyT = CreateWindowEx(0, WC_STATIC, "Company:",
-                                      WS_CHILD | WS_VISIBLE,
-                                      15, 95, 68, 18,
-                                     hGroupBox, NULL, hInst, NULL);
-                int checked = IsDlgButtonChecked(hwnd, ID_CB);
-                  hEditName = CreateWindowEx(0, WC_EDIT, programmer.name,
-                                     WS_CHILD | WS_VISIBLE | WS_BORDER,
-                                     120, 20, 120, 18,
-                                     hGroupBox, (HMENU)STATIC_ID_NAME, hInst, NULL);
-                 //SetWindowText(hStaticName,);
-                hEditSurname = CreateWindowEx(0, WC_EDIT,programmer.surname,
-                                     WS_CHILD | WS_VISIBLE | WS_BORDER,
-                                     120, 45, 120, 18,
-                                     hGroupBox, (HMENU)STATIC_ID_SURNAME, hInst, NULL);
-                hEditLanguage = CreateWindowEx(0,WC_EDIT, programmer.language,
-                                     WS_CHILD | WS_VISIBLE | WS_BORDER,
-                                     120, 70, 120, 18,
-                                     hGroupBox, (HMENU)STATIC_ID_LANGUAGE, hInst, NULL);
-                hEditCompany = CreateWindowEx(0, WC_EDIT, programmer.company,
-                                     WS_CHILD | WS_VISIBLE | WS_BORDER,
-                                     120, 95, 120, 18,
-                                     hGroupBox, (HMENU)STATIC_ID_COMPANY, hInst, NULL);
+                                      hGroupBox, NULL, hInst, NULL);
+        hStaticSurnameT = CreateWindowEx(0, WC_STATIC, "Surname:",
+                                         WS_CHILD | WS_VISIBLE,
+                                         15, 45, 65, 18,
+                                         hGroupBox, NULL, hInst, NULL);
+        hStaticLanguageT = CreateWindowEx(0, WC_STATIC, "Language:",
+                                          WS_CHILD | WS_VISIBLE,
+                                          15, 70, 72, 18,
+                                          hGroupBox, NULL, hInst, NULL);
+        hStaticCompanyT = CreateWindowEx(0, WC_STATIC, "Company:",
+                                         WS_CHILD | WS_VISIBLE,
+                                         15, 95, 68, 18,
+                                         hGroupBox, NULL, hInst, NULL);
 
-            hButton = CreateWindowEx(0,WC_BUTTON,"Show",
-                              WS_CHILD | WS_VISIBLE | WS_TABSTOP | BS_DEFPUSHBUTTON,
-                             20, 170, 130, 23,
-                             hwnd,(HMENU)BUTTON_ID,hInst,NULL);
+        hEditName = CreateWindowEx(0, WC_EDIT, programmer.name,
+                                   WS_CHILD | WS_VISIBLE | WS_BORDER,
+                                   120, 20, 120, 18,
+                                   hGroupBox, (HMENU)STATIC_ID_NAME, hInst, NULL);
+        hEditSurname = CreateWindowEx(0, WC_EDIT,programmer.surname,
+                                      WS_CHILD | WS_VISIBLE | WS_BORDER,
+                                      120, 45, 120, 18,
+                                      hGroupBox, (HMENU)STATIC_ID_SURNAME, hInst, NULL);
+        hEditLanguage = CreateWindowEx(0,WC_EDIT, programmer.language,
+                                       WS_CHILD | WS_VISIBLE | WS_BORDER,
+                                       120, 70, 120, 18,
+                                       hGroupBox, (HMENU)STATIC_ID_LANGUAGE, hInst, NULL);
+        hEditCompany = CreateWindowEx(0, WC_EDIT, programmer.company,
+                                      WS_CHILD | WS_VISIBLE | WS_BORDER,
+                                      120, 95, 120, 18,
+                                      hGroupBox, (HMENU)STATIC_ID_COMPANY, hInst, NULL);
+
+        hButton = CreateWindowEx(0,WC_BUTTON,"Show",
+                                 WS_CHILD | WS_VISIBLE | WS_TABSTOP | BS_DEFPUSHBUTTON,
+                                 20, 170, 130, 23,
+                                 hwnd,(HMENU)BUTTON_ID,hInst,NULL);
+
+       hCheckBox = CreateWindowEx(0,WC_BUTTON,"Edit",
+                                     BS_CHECKBOX | BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE,
+                                     210, 170, 105, 15,
+                                     hwnd, (HMENU)ID_CB, hInst, NULL);
+
+    break;
+    case WM_COMMAND:
+    {
+        switch(LOWORD(wParam))
+        {
+        case BUTTON_ID:
 
 
-             OldButtonProc = (WNDPROC) SetWindowLong (hButton, GWL_WNDPROC, (LONG) ButtonProc);
-
-
-            break;
-             case BUTTON_ID:
-
+            if(IsDlgButtonChecked(hwnd, ID_CB))
+            {
              GetDlgItemText (hGroupBox, STATIC_ID_NAME, programmer.name, sizeof(programmer.name));
              GetDlgItemText (hGroupBox, STATIC_ID_SURNAME, programmer.surname, sizeof(programmer.surname));
              GetDlgItemText (hGroupBox, STATIC_ID_LANGUAGE, programmer.language, sizeof(programmer.language));
              GetDlgItemText (hGroupBox, STATIC_ID_COMPANY, programmer.company, sizeof(programmer.company));
 
+            }
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), hwnd, (DLGPROC)DlgMain);
+            strcpy(programmer.name,"");
+             strcpy(programmer.surname,"");
+              strcpy(programmer.language,"");
+               strcpy(programmer.company,"");
+            break;
 
-//             printf("%s",str);
-            //GetWindowText(hEditName,programmer.name,sizeof(programmer.name));
-
-
+        }
+    }
+    break;
+    case WM_CLOSE:
+        DestroyWindow(hwnd);
         break;
-
-        case WM_CLOSE:
-            DestroyWindow(hwnd);
+    case WM_DESTROY:
+        PostQuitMessage(0);
         break;
-
-        case WM_DESTROY:
-            PostQuitMessage(0);
-        break;
-        default:
-            return DefWindowProc(hwnd, msg, wParam, lParam);
+    default:
+        return DefWindowProc(hwnd, msg, wParam, lParam);
     }
     return 0;
 }
 
-LRESULT CALLBACK ButtonProc (HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
-    HWND parent = GetParent(hwnd);
-    HWND hStatic = GetDlgItem(parent, STATIC_ID);
-    switch (msg) {
-        case WM_LBUTTONDOWN:
-
-            break;
-      case WM_LBUTTONUP:
-           DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), hwnd, (DLGPROC)DlgMain);
-            break;
-    }
-   return CallWindowProc(OldButtonProc, hwnd, msg, wp, lp);
-}
 
 BOOL CALLBACK DlgMain(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     static HWND hDial;
     static HWND hStaticNameT, hStaticSurnameT, hStaticLanguageT, hStaticCompanyT;
     static HWND hStaticName, hStaticSurname, hStaticLanguage, hStaticCompany;
-    char buf[256];
-    sprintf(buf,"%f",programmer.rating,sizeof(programmer.rating));
 
 
     switch(uMsg)
@@ -248,7 +223,7 @@ BOOL CALLBACK DlgMain(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
                                      WS_CHILD | WS_VISIBLE | WS_BORDER,
                                      120, 20, 120, 18,
                                      hDial, (HMENU)STATIC_ID_NAME, hInst, NULL);
-                 //SetWindowText(hStaticName,);
+
                 hStaticSurname = CreateWindowEx(0, WC_STATIC,programmer.surname,
                                      WS_CHILD | WS_VISIBLE | WS_BORDER,
                                      120, 45, 120, 18,

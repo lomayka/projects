@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1463379715 source:d:\progs\op\projects\courses\prog_base_2\tasks\windows\main.c
+1463433517 source:d:\progs\op\projects\courses\prog_base_2\tasks\windows\main.c
 	<windows.h>
 	<CommCtrl.h>
 	"resource.h"
@@ -13,4 +13,11 @@
 	"resource.h"
 
 1463167754 d:\progs\op\projects\courses\prog_base_2\tasks\windows\resource.h
+
+1463432425 d:\progs\op\projects\courses\prog_base_2\tasks\windows\teacher.h
+
+1463432437 source:d:\progs\op\projects\courses\prog_base_2\tasks\windows\teacher.c
+	<stdlib.h>
+	<string.h>
+	"teacher.h"
 
