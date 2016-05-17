@@ -120,19 +120,20 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                                          15, 95, 68, 18,
                                          hGroupBox, NULL, hInst, NULL);
 
-        hEditName = CreateWindowEx(0, WC_EDIT, programmer.name,
+
+        hEditName = CreateWindowEx(0, WC_EDIT, "",
                                    WS_CHILD | WS_VISIBLE | WS_BORDER,
                                    120, 20, 120, 18,
                                    hGroupBox, (HMENU)STATIC_ID_NAME, hInst, NULL);
-        hEditSurname = CreateWindowEx(0, WC_EDIT,programmer.surname,
+        hEditSurname = CreateWindowEx(0, WC_EDIT,"",
                                       WS_CHILD | WS_VISIBLE | WS_BORDER,
                                       120, 45, 120, 18,
                                       hGroupBox, (HMENU)STATIC_ID_SURNAME, hInst, NULL);
-        hEditLanguage = CreateWindowEx(0,WC_EDIT, programmer.language,
+        hEditLanguage = CreateWindowEx(0,WC_EDIT, "",
                                        WS_CHILD | WS_VISIBLE | WS_BORDER,
                                        120, 70, 120, 18,
                                        hGroupBox, (HMENU)STATIC_ID_LANGUAGE, hInst, NULL);
-        hEditCompany = CreateWindowEx(0, WC_EDIT, programmer.company,
+        hEditCompany = CreateWindowEx(0, WC_EDIT,"",
                                       WS_CHILD | WS_VISIBLE | WS_BORDER,
                                       120, 95, 120, 18,
                                       hGroupBox, (HMENU)STATIC_ID_COMPANY, hInst, NULL);
@@ -146,6 +147,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                                      BS_CHECKBOX | BS_AUTOCHECKBOX | WS_CHILD | WS_VISIBLE,
                                      210, 170, 105, 15,
                                      hwnd, (HMENU)ID_CB, hInst, NULL);
+
 
     break;
     case WM_COMMAND:
