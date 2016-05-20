@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1463728861 source:d:\progs\op\projects\courses\prog_base_2\tasks\nlp\main.c
+	<stdio.h>
+	<stdlib.h>
+	"nlp.h"
+
+1463728474 source:d:\progs\op\projects\courses\prog_base_2\tasks\nlp\nlp.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"nlp.h"
+
+1463726788 d:\progs\op\projects\courses\prog_base_2\tasks\nlp\nlp.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
