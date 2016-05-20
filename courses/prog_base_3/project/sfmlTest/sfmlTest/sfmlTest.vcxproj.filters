@@ -32,5 +32,8 @@
     <ClInclude Include="View.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Star.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

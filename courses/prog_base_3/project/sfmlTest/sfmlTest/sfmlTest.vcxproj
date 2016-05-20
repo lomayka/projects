@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClInclude Include="PointF.h" />
     <ClInclude Include="SpaceShip.h" />
+    <ClInclude Include="Star.h" />
     <ClInclude Include="View.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

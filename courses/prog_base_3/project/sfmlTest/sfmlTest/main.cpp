@@ -5,6 +5,7 @@
 #include "PointF.h"
 #include "SpaceShip.h"
 #include "View.h"
+#include "Star.h"
 
 using namespace sf;
 
@@ -15,11 +16,11 @@ public: std::string name;
         Texture textures[60];
         Sprite sprites[60];
 		float angle;
-		Planet(std::string name,PointF point,int frameCount){
+		Planet(std::string name,PointF point,int frameCount,float startAngle){
 			this->name = name;
 			this->point.x = point.x;
 			this->point.y = point.y;
-			this->angle = 0;
+			this->angle = startAngle;
 			for (int i = 1; i < frameCount; i++){
 				std::string num = std::to_string(i);
 				this->name = name;
@@ -38,7 +39,7 @@ public: PointF getCoord(){
 
 
 
-public:	void move(float ){
+public:	void move(PointF center, int rad){
 			//float angle = 0.5;
 
 			/*	if (this->point.x <=6500 && this->point.x >= 4800 && this->point.y <= 2300 && this->point.y >=1800){
@@ -59,8 +60,8 @@ public:	void move(float ){
 
 					}*/  // дичь 
 
-			this->point.x = 4800 + (cos(this->angle) * 1800);
-			this->point.y = 3100 + (sin(this->angle) * 1800);
+			this->point.x = center.x + (cos(this->angle) * rad);
+			this->point.y = center.y + (sin(this->angle) * rad);
 			for (int i = 0; i < 60; i++){
 				this->sprites[i].setPosition(this->point.x, this->point.y);
 
@@ -76,8 +77,10 @@ int main()
 {
 	RenderWindow window(VideoMode(1600,900), "Test");
 	view.reset(FloatRect(0, 0, 1600, 900));
-	PointF point(4800,1800 );
-	Planet planet("Planet1", point, 60);
+	PointF point(4300,1900 );
+	Planet planet("Planet1", point, 60,0);
+	PointF point1(4800, 1500);
+	Planet planet1("Planet2", point1, 60,120);
 	Clock clock;
 	Clock clock1;
 
@@ -90,12 +93,16 @@ int main()
 	SpaceShip myspaceShip("spaceship", spaceshipPoint);
 	PointF spaceshipPoint1(20, 120);
 	SpaceShip myspaceShip2("spaceship6", spaceshipPoint1);
+	PointF sunPosition(6400, 3600);
+	Star sun(sunPosition, "sun");
 	Time t = milliseconds(12);
 
-    int tempX = 0;//временная коорд Х.Снимаем ее после нажатия прав клав мыши
-	int tempY = 0;//коорд Y
-	float distance = 0;//это расстояние от объекта до тыка курсора
+    int tempX = 0;
+	int tempY = 0;
+	float distance = 0;
 	float rotation = 0;
+	float tempAngle = 0;
+	PointF center(6400,3600);
 	while (window.isOpen())
 	{
 		
@@ -111,8 +118,8 @@ int main()
 
 		
 			for (int j = 0; j < 40; j++){
-				Vector2i pixelPos = Mouse::getPosition(window);//забираем коорд курсора
-				Vector2f pos = window.mapPixelToCoords(pixelPos);//переводим их в игровые (уходим от коорд окна)
+				Vector2i pixelPos = Mouse::getPosition(window);
+				Vector2f pos = window.mapPixelToCoords(pixelPos);
 				float time1 = clock1.getElapsedTime().asMicroseconds();
 				clock1.restart();
 				time1= time1 / 200;
@@ -123,45 +130,66 @@ int main()
 					if (event.type == Event::Closed)
 						window.close();
 					if (event.type == Event::MouseButtonPressed)
-					if (event.key.code == Mouse::Left){
+					if (event.key.code == Mouse::Left && myspaceShip.isMove == false){
 						myspaceShip.isMove = true;
+						myspaceShip.isRotate = true;
+						tempAngle = myspaceShip.currAngle;
 						tempX = pos.x;
 						tempY = pos.y;
-						float dX = pos.x - myspaceShip.position.x;//вектор , колинеарный прямой, которая пересекает спрайт и курсор
-						float dY = pos.y - myspaceShip.position.y;//он же, координата y
-					    rotation = (atan2(dY, dX)) * 180 / 3.14159265;//получаем угол в радианах и переводим его в градусы
-						std::cout << rotation << "\n";//смотрим на градусы в консольке
+						float dX = pos.x - myspaceShip.getSpaceShipPosition().x;
+						float dY = pos.y - myspaceShip.getSpaceShipPosition().y;
+					    rotation = (atan2(dY, dX)) * 180 / 3.14159265;
+						myspaceShip.currAngle = rotation;
+	                    
 						
+					}
+					if (event.key.code == Mouse::Right && myspaceShip.isMove == true || event.key.code == Mouse::Right && myspaceShip.isRotate == true){
+						myspaceShip.isMove = false;
+						myspaceShip.isRotate = false;
+						myspaceShip.currAngle = tempAngle;
 					}
 				}
 				
-				
+				    
+				if (myspaceShip.isMove && myspaceShip.isRotate == true){
+					if (tempAngle < rotation){
+						myspaceShip.sprite.setRotation(tempAngle);
+						tempAngle += 0.5;
+						std::cout <<"TA is:" <<tempAngle << "\n";
+					}
+					else if (tempAngle > rotation) {
+						myspaceShip.sprite.setRotation(tempAngle);
+						tempAngle -= 0.5;
+					}
+					if (tempAngle + 0.5 > rotation && tempAngle < rotation || tempAngle - 0.5 < rotation && tempAngle > rotation)
+					myspaceShip.isRotate = false;
+				}
 
-					if (myspaceShip.isMove){
-						
-						myspaceShip.sprite.setRotation(rotation);//поворачиваем спрайт на эти градусы
-						distance = sqrt((tempX - myspaceShip.position.x)*(tempX - myspaceShip.position.x) + (tempY - myspaceShip.position.y)*(tempY - myspaceShip.position.y));
+					if (myspaceShip.isMove && !myspaceShip.isRotate){
+						distance = sqrt((tempX - myspaceShip.getSpaceShipPosition().x)*(tempX - myspaceShip.getSpaceShipPosition().x) + (tempY - myspaceShip.getSpaceShipPosition().y)*(tempY - myspaceShip.getSpaceShipPosition().y));
 						if (distance > 2){
-
-							myspaceShip.position.x += 1*(tempX - myspaceShip.position.x) / distance;
-							myspaceShip.position.y += 1*(tempY - myspaceShip.position.y) / distance;
+							PointF sp(myspaceShip.getSpaceShipPosition().x + 1 * (tempX - myspaceShip.getSpaceShipPosition().x) / distance, myspaceShip.getSpaceShipPosition().y + 1 * (tempY - myspaceShip.getSpaceShipPosition().y) / distance);
+							myspaceShip.setSpaceShipPosition(sp);
 					
 						}
 
-						else  myspaceShip.isMove = false; 
+						else myspaceShip.isMove = false; 
 					}
 
 					
 
 				window.draw(fonsprite);
+				window.draw(sun.sprite);
 				window.draw(planet.sprites[i]);
+				window.draw(planet1.sprites[i]);
 				window.draw(myspaceShip.sprite);
 				window.draw(myspaceShip2.sprite);
 				window.display();
 				window.setView(view);
 				window.clear();
 				myspaceShip.move();
-					planet.move(time1);
+					planet.move(center,1500);
+					planet1.move(center, 2100);
 					
 				viewmap(time1);
 			  

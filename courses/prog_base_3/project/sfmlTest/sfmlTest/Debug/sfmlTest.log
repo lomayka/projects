@@ -1,19 +1,19 @@
-﻿Сборка начата 07.05.2016 9:50:46.
+﻿Сборка начата 10.05.2016 11:49:02.
      1>Проект "D:\Progs\OP\projects\courses\prog_base_3\project\sfmlTest\sfmlTest\sfmlTest.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Sfml\SFML-2.3.2\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D SFML_DYNAMIC /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\spaceship.h(24): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
+     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\spaceship.h(30): warning C4244: аргумент: преобразование "unsigned int" в "float", возможна потеря данных
      1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\view.h(19): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
      1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\view.h(23): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
      1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\view.h(27): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
      1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\view.h(30): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(68): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(108): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
-     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(116): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
-     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(128): warning C4244: =: преобразование "float" в "int", возможна потеря данных
-     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(129): warning C4244: =: преобразование "float" в "int", возможна потеря данных
-     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(132): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(69): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(115): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(123): warning C4244: инициализация: преобразование "sf::Int64" в "float", возможна потеря данных
+     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(137): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(138): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+     1>d:\progs\op\projects\courses\prog_base_3\project\sfmltest\sfmltest\main.cpp(141): warning C4244: =: преобразование "double" в "float", возможна потеря данных
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Progs\OP\projects\courses\prog_base_3\project\sfmlTest\Debug\sfmlTest.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Sfml\SFML-2.3.2\lib" "sfml-graphics-d.lib" "sfml-window-d.lib" "sfml-system-d.lib" "sfml-audio-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Progs\OP\projects\courses\prog_base_3\project\sfmlTest\Debug\sfmlTest.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Progs\OP\projects\courses\prog_base_3\project\sfmlTest\Debug\sfmlTest.lib" /MACHINE:X86 Debug\main.obj
          Debug\PointF.obj
@@ -22,4 +22,4 @@
 
 Сборка успешно завершена.
 
-Затраченное время: 00:00:01.47
+Затраченное время: 00:00:03.23
