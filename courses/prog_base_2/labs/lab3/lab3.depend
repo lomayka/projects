@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1462737965 source:d:\progs\op\projects\courses\prog_base_2\labs\lab3\list.c
+	<stdlib.h>
+	"list.h"
+
+1463746235 d:\progs\op\projects\courses\prog_base_2\labs\lab3\list.h
+
+1463746829 source:d:\progs\op\projects\courses\prog_base_2\labs\lab3\machine.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"machine.h"
+	"list.h"
+
+1463746390 d:\progs\op\projects\courses\prog_base_2\labs\lab3\machine.h
+	"list.h"
+
+1463746639 source:d:\progs\op\projects\courses\prog_base_2\labs\lab3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"machine.h"
+	"list.h"
+
