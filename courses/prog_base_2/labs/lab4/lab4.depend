@@ -1,0 +1,65 @@
+# depslib dependency file v1.0
+1463754920 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\cjson.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1463754955 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\cjson.h
+
+1463800743 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	"server.h"
+	"programmer.h"
+	"List.h"
+
+1463755207 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\socket.c
+	<winsock2.h>
+	"socket.h"
+
+1463755184 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\socket.h
+
+1463796202 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\server.h
+	"socket.h"
+	"cJSON.h"
+
+1463793949 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\programmer.c
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"cJSON.h"
+	"programmer.h"
+
+1463794058 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\programmer.h
+	<stdlib.h>
+	<string.h>
+
+1463801195 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\server.c
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<string.h>
+	"server.h"
+	"cJSON.h"
+	"programmer.h"
+	"List.h"
+
+1463799183 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\list.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"programmer.h"
+	"List.h"
+
+1463795121 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\list.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"programmer.h"
+
