@@ -16,11 +16,6 @@ void user_onNotification(void * receiver, machine_t * sender) {
     printf("Numbers: %d %d %d\n\n", machine_getArray(sender,0),machine_getArray(sender,1),machine_getArray(sender,2));
 }
 
-void user_over_onNotification(void * receiver, machine_t * sender) {
-    user_t * user = (user_t *)receiver;
-    printf("Dear %s\n",receiver);
-    printf("For success access to xCasino use 8xCasino\n\n");
-}
 
 
 int main()

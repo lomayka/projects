@@ -1,17 +1,48 @@
 # depslib dependency file v1.0
-1463728861 source:d:\progs\op\projects\courses\prog_base_2\tasks\nlp\main.c
+1463938945 source:d:\progs\op\projects\courses\prog_base_2\tasks\nlp\main.c
 	<stdio.h>
 	<stdlib.h>
 	"nlp.h"
 
-1463728474 source:d:\progs\op\projects\courses\prog_base_2\tasks\nlp\nlp.c
+1463938798 source:d:\progs\op\projects\courses\prog_base_2\tasks\nlp\nlp.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"nlp.h"
+	"word_list.h"
+	"sentence_list.h"
 
-1463726788 d:\progs\op\projects\courses\prog_base_2\tasks\nlp\nlp.h
+1463935535 d:\progs\op\projects\courses\prog_base_2\tasks\nlp\nlp.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+
+1463932155 source:d:\progs\op\projects\courses\prog_base_2\tasks\nlp\list.c
+	<stdlib.h>
+	"list.h"
+
+1463932168 d:\progs\op\projects\courses\prog_base_2\tasks\nlp\list.h
+	<stdlib.h>
+
+1463935876 d:\progs\op\projects\courses\prog_base_2\tasks\nlp\word_list.h
+	<stdio.h>
+	<stdlib.h>
+	"nlp.h"
+
+1463938462 source:d:\progs\op\projects\courses\prog_base_2\tasks\nlp\word_list.c
+	<stdio.h>
+	<stdlib.h>
+	"word_list.h"
+	"nlp.h"
+
+1463936569 source:d:\progs\op\projects\courses\prog_base_2\tasks\nlp\sentence_list.c
+	<stdio.h>
+	<stdlib.h>
+	"sentence_list.h"
+	"nlp.h"
+
+1463936590 d:\progs\op\projects\courses\prog_base_2\tasks\nlp\sentence_list.h
+	<stdio.h>
+	<stdlib.h>
+	"nlp.h"
 

@@ -18,7 +18,7 @@ public:
 	Star(PointF position,std::string filename){
 		this->filename = filename;
 		this->position = position;
-		image.loadFromFile("images/" + filename + ".png");
+		image.loadFromFile("../sfmlTest/images/" + filename + ".png");
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 		sprite.setPosition(position.x, position.y);

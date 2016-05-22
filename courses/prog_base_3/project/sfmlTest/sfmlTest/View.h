@@ -6,7 +6,7 @@ using namespace sf;
 View view;
 
 View getplayercoordinateforview(PointF point) { //функция для считывания координат игрока
-	view.setCenter(point.x+750, point.y+375); //следим за игроком, передавая его координаты камере. +100 - сместили камеру по иксу вправо. эксперементируйте
+	view.setCenter(point.x, point.y); 
 	return view;
 
 }
