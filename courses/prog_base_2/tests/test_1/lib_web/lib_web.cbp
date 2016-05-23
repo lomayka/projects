@@ -2,26 +2,31 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="lab4" />
+		<Option title="lib_web" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/lab4" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/_web" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
 				<Option object_output="obj/Debug/" />
-				<Option type="1" />
+				<Option type="2" />
 				<Option compiler="gcc" />
+				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-Wall" />
 					<Add option="-g" />
-					<Add option="-std=c99 -pedantic-errors -Werror" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/lab4" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/_web" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
 				<Option object_output="obj/Release/" />
-				<Option type="1" />
+				<Option type="2" />
 				<Option compiler="gcc" />
+				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-Wall" />
 					<Add option="-O2" />
 				</Compiler>
 				<Linker>
@@ -29,32 +34,18 @@
 				</Linker>
 			</Target>
 		</Build>
-		<Compiler>
-			<Add option="-Wall" />
-		</Compiler>
-		<Unit filename="List.c">
+		<Unit filename="list.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="List.h" />
-		<Unit filename="cJSON.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="cJSON.h" />
+		<Unit filename="list.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="programmer.c">
+		<Unit filename="news.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="programmer.h" />
-		<Unit filename="server.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="server.h" />
-		<Unit filename="socket.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="socket.h" />
+		<Unit filename="news.h" />
+		<Unit filename="web.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
