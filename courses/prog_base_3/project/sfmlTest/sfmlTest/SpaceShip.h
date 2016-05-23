@@ -8,14 +8,19 @@ using namespace sf;
 class SpaceShip{
 private: PointF position;
 		 int health;
+		 bool isMove;
+		 bool isRotate;
+		 float currAngle;
+		 
 public: std::string name;
-		
-		bool isMove;
-		bool isRotate;
 		Image image;
 		Texture texture;
 		Sprite sprite;
-		float currAngle;
+		
+		
+		
+
+
 	SpaceShip(std::string name,PointF startPosition){
 		this->name = name;
 		this->position = startPosition;
@@ -23,7 +28,7 @@ public: std::string name;
 		this->isRotate = false;
 		this->currAngle = 0;
 		this->health = 250;
-		image.loadFromFile("images/SpaceShips/" + name + ".png");
+		image.loadFromFile("../sfmlTest/images/SpaceShips/" + name + ".png");
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 		sprite.setPosition(position.x, position.y);
@@ -43,5 +48,42 @@ public:
 	void move(){
 		this->sprite.setPosition(this->position.x,this->position.y);
 	}
-
+	bool getMove(){
+		return this->isMove;
+	}
+	bool getRotate(){
+		return this->isRotate;
+	}
+	void setMove(bool status)
+	{
+		this->isMove = status;
+	}
+	void setRotate(bool status){
+		this->isRotate = status;
+	}
+	float getCurrAngle(){
+		return this->currAngle;
+	}
+	void setCurrAngle(float angle){
+		this->currAngle = angle;
+	}
+	Image getImage(){
+		return this->image;
+	}
+	Texture getTexture(){
+		return this->texture;
+	}
+	Sprite getSprite(){
+		return this->sprite;
+	}
+	void setImage(Image image){
+		this->image = image;
+	}
+	void changeBody(std::string name){
+		image.loadFromFile("../sfmlTest/images/SpaceShips/" + name + ".png");
+		texture.loadFromImage(image);
+		sprite.setTexture(texture);
+		sprite.setPosition(this->position.x, this->position.y);
+		sprite.setOrigin(image.getSize().x / 2, image.getSize().y / 2);
+	}
 };

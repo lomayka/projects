@@ -38,6 +38,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="nlp.h" />
+		<Unit filename="sentence_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sentence_list.h" />
+		<Unit filename="word_list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="word_list.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

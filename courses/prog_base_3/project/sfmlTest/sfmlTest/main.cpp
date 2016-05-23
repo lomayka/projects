@@ -6,6 +6,7 @@
 #include "SpaceShip.h"
 #include "View.h"
 #include "Star.h"
+#define Pi 3.14159265
 
 using namespace sf;
 
@@ -24,7 +25,7 @@ public: std::string name;
 			for (int i = 1; i < frameCount; i++){
 				std::string num = std::to_string(i);
 				this->name = name;
-				std::string str = "images/Planets/" + name + "/" + num + ".png";
+				std::string str = "../sfmlTest/images/Planets/" + name + "/" + num + ".png";
 				this->images[i].loadFromFile(str);
 				this->textures[i].loadFromImage(this->images[i]);
 				this->sprites[i].setTexture(this->textures[i]);
@@ -40,25 +41,6 @@ public: PointF getCoord(){
 
 
 public:	void move(PointF center, int rad){
-			//float angle = 0.5;
-
-			/*	if (this->point.x <=6500 && this->point.x >= 4800 && this->point.y <= 2300 && this->point.y >=1800){
-					this->point.y += 0.15;
-					for (int i = 0; i < 60; i++){
-					this->sprites[i].setPosition(this->getCoord().x + angle / (this->getCoord().y - startPoint.y) * (this->getCoord().y - startPoint.y), this->getCoord().y + this->getCoord().y - startPoint.y);
-					}
-					this->point.x += angle / (this->getCoord().y - startPoint.y) * (this->getCoord().y - startPoint.y);
-					}
-					else
-					{
-					this->point.y += 0.15;
-					for (int i = 0; i < 60; i++){
-					this->sprites[i].setPosition(this->getCoord().x - angle / (this->getCoord().y - startPoint.y) * (this->getCoord().y - startPoint.y), this->getCoord().y + this->getCoord().y - startPoint.y);
-					}
-					this->point.x -= angle / (this->getCoord().y - startPoint.y) * (this->getCoord().y - startPoint.y);
-
-
-					}*/  // дичь 
 
 			this->point.x = center.x + (cos(this->angle) * rad);
 			this->point.y = center.y + (sin(this->angle) * rad);
@@ -75,22 +57,22 @@ public:	void move(PointF center, int rad){
 
 int main()
 {
-	RenderWindow window(VideoMode(1600,900), "Test");
-	view.reset(FloatRect(0, 0, 1600, 900));
+	RenderWindow window(VideoMode(1920,1080), "Test");
+	view.reset(FloatRect(0, 0, 1920, 1080));
 	PointF point(4300,1900 );
-	Planet planet("Planet1", point, 60,0);
+	Planet planet("Planet1", point, 60,270);
 	PointF point1(4800, 1500);
-	Planet planet1("Planet2", point1, 60,120);
+	Planet planet1("Planet2", point1, 60,500);
 	Clock clock;
 	Clock clock1;
 
 	
 	Texture fon;
 	Sprite fonsprite;
-	fon.loadFromFile("images/gFon.png");
+	fon.loadFromFile("../sfmlTest/images/gFon.png");
 	fonsprite.setTexture(fon);
-	PointF spaceshipPoint(80, 50);
-	SpaceShip myspaceShip("spaceship", spaceshipPoint);
+	//PointF spaceshipPoint(6700, 3400);
+	
 	PointF spaceshipPoint1(20, 120);
 	SpaceShip myspaceShip2("spaceship6", spaceshipPoint1);
 	PointF sunPosition(6400, 3600);
@@ -103,6 +85,12 @@ int main()
 	float rotation = 0;
 	float tempAngle = 0;
 	PointF center(6400,3600);
+	
+	planet.move(center, 1500);
+
+	SpaceShip myspaceShip("spaceship", planet.getCoord());
+	view = getplayercoordinateforview(myspaceShip.getSpaceShipPosition());
+
 	while (window.isOpen())
 	{
 		
@@ -130,28 +118,28 @@ int main()
 					if (event.type == Event::Closed)
 						window.close();
 					if (event.type == Event::MouseButtonPressed)
-					if (event.key.code == Mouse::Left && myspaceShip.isMove == false){
-						myspaceShip.isMove = true;
-						myspaceShip.isRotate = true;
-						tempAngle = myspaceShip.currAngle;
+					if (event.key.code == Mouse::Left && myspaceShip.getMove() == false){
+						myspaceShip.setMove(true);
+						myspaceShip.setRotate(true);
+						tempAngle = myspaceShip.getCurrAngle();
 						tempX = pos.x;
 						tempY = pos.y;
 						float dX = pos.x - myspaceShip.getSpaceShipPosition().x;
 						float dY = pos.y - myspaceShip.getSpaceShipPosition().y;
-					    rotation = (atan2(dY, dX)) * 180 / 3.14159265;
-						myspaceShip.currAngle = rotation;
+						rotation = (atan2(dY, dX)) * 180 / Pi;
+						myspaceShip.setCurrAngle(rotation);
 	                    
 						
 					}
-					if (event.key.code == Mouse::Right && myspaceShip.isMove == true || event.key.code == Mouse::Right && myspaceShip.isRotate == true){
-						myspaceShip.isMove = false;
-						myspaceShip.isRotate = false;
-						myspaceShip.currAngle = tempAngle;
+					if (event.key.code == Mouse::Right && myspaceShip.getMove() == true || event.key.code == Mouse::Right && myspaceShip.getRotate() == true){
+						myspaceShip.setMove(false);
+						myspaceShip.setRotate(false);
+						myspaceShip.setCurrAngle(tempAngle);
 					}
 				}
 				
 				    
-				if (myspaceShip.isMove && myspaceShip.isRotate == true){
+				if (myspaceShip.getMove() && myspaceShip.getRotate()){
 					if (tempAngle < rotation){
 						myspaceShip.sprite.setRotation(tempAngle);
 						tempAngle += 0.5;
@@ -162,10 +150,10 @@ int main()
 						tempAngle -= 0.5;
 					}
 					if (tempAngle + 0.5 > rotation && tempAngle < rotation || tempAngle - 0.5 < rotation && tempAngle > rotation)
-					myspaceShip.isRotate = false;
+					myspaceShip.setRotate(false);
 				}
 
-					if (myspaceShip.isMove && !myspaceShip.isRotate){
+					if (myspaceShip.getMove() && !myspaceShip.getRotate()){
 						distance = sqrt((tempX - myspaceShip.getSpaceShipPosition().x)*(tempX - myspaceShip.getSpaceShipPosition().x) + (tempY - myspaceShip.getSpaceShipPosition().y)*(tempY - myspaceShip.getSpaceShipPosition().y));
 						if (distance > 2){
 							PointF sp(myspaceShip.getSpaceShipPosition().x + 1 * (tempX - myspaceShip.getSpaceShipPosition().x) / distance, myspaceShip.getSpaceShipPosition().y + 1 * (tempY - myspaceShip.getSpaceShipPosition().y) / distance);
@@ -173,7 +161,26 @@ int main()
 					
 						}
 
-						else myspaceShip.isMove = false; 
+						else myspaceShip.setMove(false); 
+					}
+
+					if (Keyboard::isKeyPressed(Keyboard::Num1)){
+						myspaceShip.changeBody("spaceship");
+					}
+					else if (Keyboard::isKeyPressed(Keyboard::Num2)){
+						myspaceShip.changeBody("spaceship2");
+					}
+					else if (Keyboard::isKeyPressed(Keyboard::Num3)){
+						myspaceShip.changeBody("spaceship3");
+					}
+					else if (Keyboard::isKeyPressed(Keyboard::Num4)){
+						myspaceShip.changeBody("spaceship4");
+					}
+					else if (Keyboard::isKeyPressed(Keyboard::Num5)){
+						myspaceShip.changeBody("spaceship5");
+					}
+					else if (Keyboard::isKeyPressed(Keyboard::Num6)){
+						myspaceShip.changeBody("spaceship6");
 					}
 
 					
