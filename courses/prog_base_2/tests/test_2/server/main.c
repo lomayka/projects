@@ -9,6 +9,8 @@
 #include "client.h"
 #include "quote.h"
 #include "jSON_parce.h"
+#include "list.h"
+#include "db_manager.h"
 
 #define NO_FLAGS_SET 0
 #define PORT 80
@@ -74,7 +76,28 @@ int main()
             }
             else if (strcmp(rs.method,"GET") == 0 && strcmp(rs.uri, "/database") == 0 )
             {
+              list_t * list = list_new();
+              const char * dbFile = "programmers.db";
+              db_t * db = db_new(dbFile);
+              db_getProgrammers(db,list);
+              char * tt = programmer_getName(list_getByID(list,0));
 
+char homeBuf[10240];
+    char text[5000];
+    strcpy(text,"[\n");
+    for (int i = 0; i < list_getSize(list); i++)
+    {
+        strcat(text,programmer_toJSON(list_getByID(list,i)));
+        strcat(text,",\n");
+    }
+    strcat(text,"]\n");
+    sprintf(homeBuf,
+            "HTTP/1.1 404 \n"
+            "Content-Type: text/html/application/json\n"
+            "Content-Length: %zu\n"
+            "\n%s", strlen(text), text);
+    socket_write(client, homeBuf,sizeof(homeBuf));
+    socket_close(client);
             }
 
         }
