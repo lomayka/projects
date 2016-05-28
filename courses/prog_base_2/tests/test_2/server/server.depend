@@ -1,0 +1,52 @@
+# depslib dependency file v1.0
+1463806279 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\cjson.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1463806279 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\cjson.h
+
+1464428041 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<winsock2.h>
+	<windows.h>
+	"socket.h"
+	"server.h"
+	"client.h"
+
+1464417854 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\socket.h
+
+1464426499 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.h
+	<stdio.h>
+	<stdlib.h>
+	"socket.h"
+
+1464427488 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.c
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	"string.h"
+	"socket.h"
+	"server.h"
+	"cJSON.h"
+
+1464417904 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\socket.c
+	<winsock2.h>
+	"socket.h"
+
+1464427947 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\client.c
+	<winsock2.h>
+	<windows.h>
+	<stdio.h>
+
+1464427984 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\client.h
+	<winsock2.h>
+	<windows.h>
+
