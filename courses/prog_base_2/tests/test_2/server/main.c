@@ -3,9 +3,12 @@
 #include <string.h>
 #include <winsock2.h>
 #include <windows.h>
+#include <time.h>
 #include "socket.h"
 #include "server.h"
 #include "client.h"
+#include "quote.h"
+#include "jSON_parce.h"
 
 #define NO_FLAGS_SET 0
 #define PORT 80
@@ -39,14 +42,9 @@ int main()
 
     recvSockAddr = setSocAddr(ip);
 
-    recvSocket = new_Socket();
 
-    Connect(recvSockAddr,recvSocket);
 
-    sendFirstRequest(recvSocket,host_name);
 
-    Recieve(recvSocket,buffer);
-    printf("%s",buffer);
     while(1)
     {
         client = socket_accept(server);
@@ -59,6 +57,24 @@ int main()
             if (strcmp(rs.method,"GET") == 0 && strcmp(rs.uri, "/info") == 0 )
             {
                 server_info(client);
+            }
+            else if (strcmp(rs.method,"GET") == 0 && strcmp(rs.uri, "/external") == 0 )
+            {
+                recvSocket = new_Socket();
+
+                Connect(recvSockAddr,recvSocket);
+
+                sendFirstRequest(recvSocket,host_name);
+
+                Recieve(recvSocket,buffer);
+                quote_t * quote = quote_new();
+                parse(buffer,quote);
+                char * str = quote_toJSON(quote);
+                server_external(client,str);
+            }
+            else if (strcmp(rs.method,"GET") == 0 && strcmp(rs.uri, "/database") == 0 )
+            {
+
             }
 
         }

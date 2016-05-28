@@ -13,7 +13,6 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add option="-std=c99 -pedantic-errors -Werror" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -36,9 +35,25 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="cJSON.h" />
+		<Unit filename="client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="client.h" />
+		<Unit filename="db_manager.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="db_manager.h" />
+		<Unit filename="jSON_parce.h" />
+		<Unit filename="jSON_parse.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="quote.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="quote.h" />
 		<Unit filename="server.c">
 			<Option compilerVar="CC" />
 		</Unit>

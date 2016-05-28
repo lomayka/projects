@@ -11,24 +11,27 @@
 
 1463806279 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\cjson.h
 
-1464428041 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\main.c
+1464433172 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<winsock2.h>
 	<windows.h>
+	<time.h>
 	"socket.h"
 	"server.h"
 	"client.h"
+	"quote.h"
+	"jSON_parce.h"
 
 1464417854 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\socket.h
 
-1464426499 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.h
+1464433539 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.h
 	<stdio.h>
 	<stdlib.h>
 	"socket.h"
 
-1464427488 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.c
+1464433579 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.c
 	<stdio.h>
 	<stdlib.h>
 	<stddef.h>
@@ -41,7 +44,7 @@
 	<winsock2.h>
 	"socket.h"
 
-1464427947 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\client.c
+1464431213 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\client.c
 	<winsock2.h>
 	<windows.h>
 	<stdio.h>
@@ -49,4 +52,29 @@
 1464427984 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\client.h
 	<winsock2.h>
 	<windows.h>
+
+1464433316 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\quote.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"quote.h"
+	"cJSON.h"
+
+1464432563 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\quote.h
+	<stdlib.h>
+	<stdio.h>
+
+1464432239 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\json_parse.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"cJSON.h"
+	"quote.h"
+
+1464429416 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\json_parce.h
+	<stdio.h>
+	<stdlib.h>
+	"cJSON.h"
+	"quote.h"
 

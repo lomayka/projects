@@ -48,7 +48,7 @@ void Recieve(SOCKET recvSocket, char * buffer ){
 			printf("ERROR: WSACleanup unsuccessful\r\n");
         system("pause");
     }
-
+buffer[numrcv] = '\0';
 }
 
 SOCKADDR_IN setSocAddr(char * ip){

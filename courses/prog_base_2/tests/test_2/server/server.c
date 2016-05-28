@@ -7,6 +7,7 @@
 #include "cJSON.h"
 
 
+
 http_request_t http_request_parse(const char * const request)
 {
     http_request_t req;
@@ -69,5 +70,18 @@ void server_info(socket_t * client)
             "Content-Type: text/html/application/json\n"
             "Content-Length: %zu\n"
             "\n%s", strlen(pageText), pageText);
+    socket_write(client, homeBuf,sizeof(homeBuf));
+}
+
+void server_external(socket_t * client,char * str)
+{
+    char homeBuf[1024];
+
+
+    sprintf(homeBuf,
+            "HTTP/1.1 404 \n"
+            "Content-Type: text/html/application/json\n"
+            "Content-Length: %zu\n"
+            "\n%s", strlen(str), str);
     socket_write(client, homeBuf,sizeof(homeBuf));
 }
