@@ -86,4 +86,5 @@ public:
 		sprite.setPosition(this->position.x, this->position.y);
 		sprite.setOrigin(image.getSize().x / 2, image.getSize().y / 2);
 	}
+	
 };

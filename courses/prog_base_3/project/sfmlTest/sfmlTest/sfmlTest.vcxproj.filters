@@ -35,5 +35,8 @@
     <ClInclude Include="Star.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Pirate.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

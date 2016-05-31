@@ -6,6 +6,7 @@
 #include "SpaceShip.h"
 #include "View.h"
 #include "Star.h"
+#include "Pirate.h"
 #define Pi 3.14159265
 
 using namespace sf;
@@ -71,7 +72,6 @@ int main()
 	Sprite fonsprite;
 	fon.loadFromFile("../sfmlTest/images/gFon.png");
 	fonsprite.setTexture(fon);
-	//PointF spaceshipPoint(6700, 3400);
 	
 	PointF spaceshipPoint1(20, 120);
 	SpaceShip myspaceShip2("spaceship6", spaceshipPoint1);
@@ -88,7 +88,8 @@ int main()
 	
 	planet.move(center, 1500);
 
-	SpaceShip myspaceShip("spaceship", planet.getCoord());
+	SpaceShip myspaceShip("spaceship1", planet.getCoord());
+	Pirate p("spaceship6", sunPosition);
 	view = getplayercoordinateforview(myspaceShip.getSpaceShipPosition());
 
 	while (window.isOpen())
@@ -143,7 +144,7 @@ int main()
 					if (tempAngle < rotation){
 						myspaceShip.sprite.setRotation(tempAngle);
 						tempAngle += 0.5;
-						std::cout <<"TA is:" <<tempAngle << "\n";
+						//std::cout <<"TA is:" <<tempAngle << "\n";
 					}
 					else if (tempAngle > rotation) {
 						myspaceShip.sprite.setRotation(tempAngle);
@@ -164,8 +165,9 @@ int main()
 						else myspaceShip.setMove(false); 
 					}
 
+
 					if (Keyboard::isKeyPressed(Keyboard::Num1)){
-						myspaceShip.changeBody("spaceship");
+						myspaceShip.changeBody("spaceship1");
 					}
 					else if (Keyboard::isKeyPressed(Keyboard::Num2)){
 						myspaceShip.changeBody("spaceship2");
@@ -191,10 +193,12 @@ int main()
 				window.draw(planet1.sprites[i]);
 				window.draw(myspaceShip.sprite);
 				window.draw(myspaceShip2.sprite);
+				window.draw(p.sprite);
 				window.display();
 				window.setView(view);
 				window.clear();
 				myspaceShip.move();
+				p.findDistance(myspaceShip);
 					planet.move(center,1500);
 					planet1.move(center, 2100);
 					
