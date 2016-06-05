@@ -11,7 +11,7 @@
 
 1463806279 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\cjson.h
 
-1464439518 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\main.c
+1464444335 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -25,6 +25,7 @@
 	"jSON_parce.h"
 	"list.h"
 	"db_manager.h"
+	"files.h"
 
 1464417854 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\socket.h
 
@@ -33,7 +34,7 @@
 	<stdlib.h>
 	"socket.h"
 
-1464433579 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.c
+1464443215 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.c
 	<stdio.h>
 	<stdlib.h>
 	<stddef.h>
@@ -166,4 +167,34 @@
 	<stdio.h>
 	"list.h"
 	"programmers.h"
+
+1464440135 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\programmers.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"programmers.h"
+	"cJSON.h"
+
+1464441633 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\files.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<dirent.h>
+	<windows.h>
+
+1464441710 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\files.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<dirent.h>
+	<windows.h>
 

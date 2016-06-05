@@ -85,3 +85,16 @@ void server_external(socket_t * client,char * str)
             "\n%s", strlen(str), str);
     socket_write(client, homeBuf,sizeof(homeBuf));
 }
+
+void server_notFound(socket_t * client)
+{
+    char homeBuf[1024];
+    const char * pageText = "404 Page Not Found!";
+    sprintf(homeBuf,
+            "HTTP/1.1 404 \n"
+            "Content-Type: text/html/application/json\n"
+            "Content-Length: %zu\n"
+            "\n%s", strlen(pageText), pageText);
+    socket_write(client, homeBuf,sizeof(homeBuf));
+    socket_close(client);
+}

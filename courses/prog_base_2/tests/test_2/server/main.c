@@ -11,6 +11,7 @@
 #include "jSON_parce.h"
 #include "list.h"
 #include "db_manager.h"
+#include "files.h"
 
 #define NO_FLAGS_SET 0
 #define PORT 80
@@ -80,7 +81,6 @@ int main()
               const char * dbFile = "programmers.db";
               db_t * db = db_new(dbFile);
               db_getProgrammers(db,list);
-              char * tt = programmer_getName(list_getByID(list,0));
 
 char homeBuf[10240];
     char text[5000];
@@ -99,6 +99,45 @@ char homeBuf[10240];
     socket_write(client, homeBuf,sizeof(homeBuf));
     socket_close(client);
             }
+        else if (strcmp(rs.method,"GET") == 0 && strncmp(rs.uri, "/files/", 7) == 0)
+        {
+            char * part = strstr(rs.uri, "/files/");
+            char path[200];
+            part+=7;
+            strcat(path,"C:\\Progs\\OP\\projects\\courses\\prog_base_2\\labs\\lab4\\files\\");
+            strcat(path,part);
+            if (file_exists(path))
+            {
+                printf("OD");
+              char name[30];
+              strcpy(name,part);
+
+              int size = file_getSize(path);
+
+              time_t time = file_getCreateTime(path);
+
+    cJSON * jFile = cJSON_CreateObject();
+    cJSON_AddItemToObject(jFile, "name", cJSON_CreateString(name));
+    cJSON_AddItemToObject(jFile, "size", cJSON_CreateNumber(size));
+    char * t = ctime(&time);
+    t[strlen(t)-1] = '\0';
+    cJSON_AddItemToObject(jFile, "time", cJSON_CreateString(t));
+    char * jsonString = cJSON_Print(jFile);
+    server_external(client,jsonString);
+
+
+
+
+            }
+            else {
+            server_external(client,"{\n\"Status\": \"Error\",\n\"Reason\":\"File not exist\"\n}");
+            }
+            server_info(client);
+        }
+        else
+        {
+            server_notFound(client);
+        }
 
         }
     }
