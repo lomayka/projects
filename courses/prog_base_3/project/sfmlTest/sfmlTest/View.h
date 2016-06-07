@@ -1,3 +1,6 @@
+#ifndef View_H
+#define View_H
+
 #include <SFML/Graphics.hpp>
 #include "PointF.h"
 
@@ -5,30 +8,36 @@ using namespace sf;
 
 View view;
 
-View getplayercoordinateforview(PointF point) { //функция для считывания координат игрока
+View getplayercoordinateforview(PointF point) {
 	view.setCenter(point.x, point.y); 
 	return view;
 
 }
 
 
-View viewmap(float time) { //функция для перемещения камеры по карте. принимает время sfml
+View viewmap(float time) {
 
 
 	if (Keyboard::isKeyPressed(Keyboard::D)) {
-		view.move(0.1*time, 0);//скроллим карту вправо (см урок, когда мы двигали героя - всё тоже самое)
+		if (view.getCenter().x < 12000)
+		   view.move(0.1*time, 0);
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::S)) {
-		view.move(0, 0.1*time);//скроллим карту вниз (см урок, когда мы двигали героя - всё тоже самое)
+		if (view.getCenter().y < 6700)
+		   view.move(0, 0.1*time);
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::A)) {
-		view.move(-0.1*time, 0);//скроллим карту влево (см урок, когда мы двигали героя - всё тоже самое)
+		if (view.getCenter().x > 800) 
+			view.move(-0.1*time, 0);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::W)) {
-		view.move(0, -0.1*time);//скроллим карту вправо (см урок, когда мы двигали героя - всё тоже самое)
+		if (view.getCenter().y > 500)
+		view.move(0, -0.1*time);
 	}
 	return view;
 
 }
+
+#endif

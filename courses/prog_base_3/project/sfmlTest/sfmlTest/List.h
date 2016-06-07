@@ -27,6 +27,13 @@ public:
 	{
 		return this->size;
 	}
+	void list_delete(int index)
+	{
+		for (int i = index; i < this->size-1; i++){
+			this->arr[i] = this->arr[i + 1];
+		}
+		this->size--;
+	}
 
 
 };

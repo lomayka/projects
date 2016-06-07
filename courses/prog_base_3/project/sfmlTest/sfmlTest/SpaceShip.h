@@ -1,3 +1,6 @@
+#ifndef SpaceShip_H
+#define SpaceShip_H
+
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "PointF.h"
@@ -11,6 +14,7 @@ private: PointF position;
 		 bool isMove;
 		 bool isRotate;
 		 float currAngle;
+		 int curr_health;
 		 
 public: std::string name;
 		Image image;
@@ -28,6 +32,7 @@ public: std::string name;
 		this->isRotate = false;
 		this->currAngle = 0;
 		this->health = 250;
+		this->curr_health = this->health;
 		image.loadFromFile("../sfmlTest/images/SpaceShips/" + name + ".png");
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
@@ -86,5 +91,17 @@ public:
 		sprite.setPosition(this->position.x, this->position.y);
 		sprite.setOrigin(image.getSize().x / 2, image.getSize().y / 2);
 	}
+	int getCurrHealth(){
+		return this->curr_health;
+	}
+	void setCurrHealth(int curr_health)
+	{
+		this->curr_health = curr_health;
+	}
+	int getHealth(){
+		return this->health;
+	}
 	
 };
+
+#endif

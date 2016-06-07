@@ -85,11 +85,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="PointF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="List.h" />
+    <ClInclude Include="Planet.h" />
     <ClInclude Include="PointF.h" />
+    <ClInclude Include="Rocket.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="View.h" />

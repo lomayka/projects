@@ -1,3 +1,6 @@
+#ifndef Star_H
+#define Star_H
+
 #include <SFML/Graphics.hpp>
 #include "PointF.h"
 
@@ -28,3 +31,4 @@ public:
 
 
 };
+#endif
