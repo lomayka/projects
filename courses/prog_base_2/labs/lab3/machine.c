@@ -82,10 +82,6 @@ machine_sendResult(machine_t * self, enum event state) {
     }
 }
 
-void machine_UpEvent(machine_t * self){
-
-
-}
 
 char * machine_getState(machine_t * self){
 return self->state;

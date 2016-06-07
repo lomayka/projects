@@ -1,0 +1,200 @@
+# depslib dependency file v1.0
+1463806279 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\cjson.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1463806279 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\cjson.h
+
+1464444335 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<winsock2.h>
+	<windows.h>
+	<time.h>
+	"socket.h"
+	"server.h"
+	"client.h"
+	"quote.h"
+	"jSON_parce.h"
+	"list.h"
+	"db_manager.h"
+	"files.h"
+
+1464417854 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\socket.h
+
+1464433539 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.h
+	<stdio.h>
+	<stdlib.h>
+	"socket.h"
+
+1464443215 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\server.c
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	"string.h"
+	"socket.h"
+	"server.h"
+	"cJSON.h"
+
+1464417904 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\socket.c
+	<winsock2.h>
+	"socket.h"
+
+1464431213 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\client.c
+	<winsock2.h>
+	<windows.h>
+	<stdio.h>
+
+1464427984 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\client.h
+	<winsock2.h>
+	<windows.h>
+
+1464433316 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\quote.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"quote.h"
+	"cJSON.h"
+
+1464432563 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\quote.h
+	<stdlib.h>
+	<stdio.h>
+
+1464432239 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\json_parse.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"cJSON.h"
+	"quote.h"
+
+1464429416 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\json_parce.h
+	<stdio.h>
+	<stdlib.h>
+	"cJSON.h"
+	"quote.h"
+
+1463806279 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\sqlite3.c
+	<vxWorks.h>
+	<pthread.h>
+	"mingw.h"
+	"_mingw.h"
+	<stdarg.h>
+	"config.h"
+	<stdint.h>
+	<inttypes.h>
+	<intrin.h>
+	<cmnintrin.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<stddef.h>
+	<TargetConditionals.h>
+	<ctype.h>
+	<time.h>
+	<sys/sysctl.h>
+	<malloc/malloc.h>
+	<libkern/OSAtomic.h>
+	<malloc.h>
+	<pthread.h>
+	"windows.h"
+	<sys/cygwin.h>
+	<errno.h>
+	<process.h>
+	<math.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/time.h>
+	<errno.h>
+	<sys/mman.h>
+	<sys/ioctl.h>
+	<sys/file.h>
+	<sys/param.h>
+	<semaphore.h>
+	<limits.h>
+	<sys/mount.h>
+	<utime.h>
+	<sys/dcmd_blk.h>
+	<sys/statvfs.h>
+	<dlfcn.h>
+	<tcl.h>
+	"sqlite3rtree.h"
+	<unicode/utypes.h>
+	<unicode/uregex.h>
+	<unicode/ustring.h>
+	<unicode/ucol.h>
+	<unicode/ubrk.h>
+	<unicode/utf16.h>
+	<ctype.h>
+	<math.h>
+
+1464438413 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\db_manager.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"list.h"
+	"sqlite3.h"
+	"db_manager.h"
+	"programmers.h"
+
+1464437787 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\list.h
+	<stdlib.h>
+	<stdio.h>
+	"programmers.h"
+
+1464437939 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\programmers.h
+
+1463806279 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\sqlite3.h
+	<stdarg.h>
+
+1464437626 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\db_manager.h
+	"programmers.h"
+	"sqlite3.h"
+	"list.h"
+
+1464439492 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\list.c
+	<stdlib.h>
+	<stdio.h>
+	"list.h"
+	"programmers.h"
+
+1464440135 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\programmers.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"programmers.h"
+	"cJSON.h"
+
+1464441633 source:c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\files.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<dirent.h>
+	<windows.h>
+
+1464441710 c:\progs\op\projects\courses\prog_base_2\tests\test_2\server\files.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	<sys/stat.h>
+	<sys/types.h>
+	<dirent.h>
+	<windows.h>
+

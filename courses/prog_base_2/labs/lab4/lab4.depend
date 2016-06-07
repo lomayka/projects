@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1463754920 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\cjson.c
+1463806279 source:c:\progs\op\projects\courses\prog_base_2\labs\lab4\cjson.c
 	<string.h>
 	<stdio.h>
 	<math.h>
@@ -9,38 +9,55 @@
 	<ctype.h>
 	"cJSON.h"
 
-1463754955 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\cjson.h
+1463806279 c:\progs\op\projects\courses\prog_base_2\labs\lab4\cjson.h
 
-1463800743 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\main.c
-	<stdio.h>
+1463844636 source:c:\progs\op\projects\courses\prog_base_2\labs\lab4\list.c
 	<stdlib.h>
-	<stddef.h>
-	"server.h"
+	<stdio.h>
+	<string.h>
 	"programmer.h"
 	"List.h"
 
-1463755207 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\socket.c
+1463856851 c:\progs\op\projects\courses\prog_base_2\labs\lab4\programmer.h
+	<stdlib.h>
+	<string.h>
+
+1463846421 c:\progs\op\projects\courses\prog_base_2\labs\lab4\list.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"programmer.h"
+	"socket.h"
+
+1463856460 source:c:\progs\op\projects\courses\prog_base_2\labs\lab4\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<windows.h>
+	<conio.h>
+	"List.h"
+	"server.h"
+	"programmer.h"
+
+1463856328 c:\progs\op\projects\courses\prog_base_2\labs\lab4\server.h
+	"socket.h"
+	"cJSON.h"
+	"List.h"
+
+1463806279 c:\progs\op\projects\courses\prog_base_2\labs\lab4\socket.h
+
+1463842602 source:c:\progs\op\projects\courses\prog_base_2\labs\lab4\programmer.c
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"cJSON.h"
+	"programmer.h"
+
+1463868655 source:c:\progs\op\projects\courses\prog_base_2\labs\lab4\socket.c
 	<winsock2.h>
 	"socket.h"
 
-1463755184 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\socket.h
-
-1463796202 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\server.h
-	"socket.h"
-	"cJSON.h"
-
-1463793949 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\programmer.c
-	<stdlib.h>
-	<string.h>
-	<stdio.h>
-	"cJSON.h"
-	"programmer.h"
-
-1463794058 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\programmer.h
-	<stdlib.h>
-	<string.h>
-
-1463801195 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\server.c
+1463869141 source:c:\progs\op\projects\courses\prog_base_2\labs\lab4\server.c
 	<stdio.h>
 	<stdlib.h>
 	<stddef.h>
@@ -49,17 +66,4 @@
 	"cJSON.h"
 	"programmer.h"
 	"List.h"
-
-1463799183 source:d:\progs\op\projects\courses\prog_base_2\tasks\lab4\list.c
-	<stdlib.h>
-	<stdio.h>
-	<string.h>
-	"programmer.h"
-	"List.h"
-
-1463795121 d:\progs\op\projects\courses\prog_base_2\tasks\lab4\list.h
-	<stdlib.h>
-	<stdio.h>
-	<string.h>
-	"programmer.h"
 

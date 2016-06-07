@@ -1,0 +1,126 @@
+# depslib dependency file v1.0
+1463806279 source:c:\progs\op\projects\courses\prog_base_2\labs\lab5\cjson.c
+	<string.h>
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<limits.h>
+	<ctype.h>
+	"cJSON.h"
+
+1463806279 c:\progs\op\projects\courses\prog_base_2\labs\lab5\cjson.h
+
+1464962350 source:c:\progs\op\projects\courses\prog_base_2\labs\lab5\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stddef.h>
+	<windows.h>
+	<conio.h>
+	"server.h"
+	"socket.h"
+	"db_manager.h"
+
+1464935009 c:\progs\op\projects\courses\prog_base_2\labs\lab5\server.h
+	"socket.h"
+	"cJSON.h"
+
+1464417854 c:\progs\op\projects\courses\prog_base_2\labs\lab5\socket.h
+
+1464417904 source:c:\progs\op\projects\courses\prog_base_2\labs\lab5\socket.c
+	<winsock2.h>
+	"socket.h"
+
+1463806279 source:c:\progs\op\projects\courses\prog_base_2\labs\lab5\sqlite3.c
+	<vxWorks.h>
+	<pthread.h>
+	"mingw.h"
+	"_mingw.h"
+	<stdarg.h>
+	"config.h"
+	<stdint.h>
+	<inttypes.h>
+	<intrin.h>
+	<cmnintrin.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<stddef.h>
+	<TargetConditionals.h>
+	<ctype.h>
+	<time.h>
+	<sys/sysctl.h>
+	<malloc/malloc.h>
+	<libkern/OSAtomic.h>
+	<malloc.h>
+	<pthread.h>
+	"windows.h"
+	<sys/cygwin.h>
+	<errno.h>
+	<process.h>
+	<math.h>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+	<sys/time.h>
+	<errno.h>
+	<sys/mman.h>
+	<sys/ioctl.h>
+	<sys/file.h>
+	<sys/param.h>
+	<semaphore.h>
+	<limits.h>
+	<sys/mount.h>
+	<utime.h>
+	<sys/dcmd_blk.h>
+	<sys/statvfs.h>
+	<dlfcn.h>
+	<tcl.h>
+	"sqlite3rtree.h"
+	<unicode/utypes.h>
+	<unicode/uregex.h>
+	<unicode/ustring.h>
+	<unicode/ucol.h>
+	<unicode/ubrk.h>
+	<unicode/utf16.h>
+	<ctype.h>
+	<math.h>
+
+1464962707 source:c:\progs\op\projects\courses\prog_base_2\labs\lab5\server.c
+	<stddef.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"server.h"
+	"socket.h"
+	"db_manager.h"
+	"programmer.h"
+
+1464962000 source:c:\progs\op\projects\courses\prog_base_2\labs\lab5\db_manager.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"sqlite3.h"
+	"db_manager.h"
+	"programmer.h"
+
+1463806279 c:\progs\op\projects\courses\prog_base_2\labs\lab5\sqlite3.h
+	<stdarg.h>
+
+1464936698 c:\progs\op\projects\courses\prog_base_2\labs\lab5\db_manager.h
+	"sqlite3.h"
+
+1464943957 source:c:\progs\op\projects\courses\prog_base_2\labs\lab5\programmer.c
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+	"cJSON.h"
+	"programmer.h"
+
+1463996673 c:\progs\op\projects\courses\prog_base_2\labs\lab5\programmer.h
+	<stdlib.h>
+	<string.h>
+

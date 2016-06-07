@@ -22,3 +22,35 @@
 	"machine.h"
 	"list.h"
 
+1463806279 source:c:\progs\op\projects\courses\prog_base_2\labs\lab3\list.c
+	<stdlib.h>
+	"list.h"
+
+1463806279 c:\progs\op\projects\courses\prog_base_2\labs\lab3\list.h
+
+1463807964 source:c:\progs\op\projects\courses\prog_base_2\labs\lab3\machine.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<time.h>
+	"machine.h"
+	"list.h"
+
+1463806279 c:\progs\op\projects\courses\prog_base_2\labs\lab3\machine.h
+	"list.h"
+
+1463815558 source:c:\progs\op\projects\courses\prog_base_2\labs\lab3\main.c
+	<stdio.h>
+	<stdlib.h>
+	"machine.h"
+	"list.h"
+	<stdio.h>
+	<stdlib.h>
+	<stdlib.h>
+	<stdarg.h>
+	<stddef.h>
+	<setjmp.h>
+	<cmocka.h>
+	"machine.h"
+	"list.h"
+

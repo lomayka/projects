@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1463825904 source:c:\progs\op\projects\courses\prog_base_2\tests\test_1\main\main.c
+	<stdio.h>
+	<stdlib.h>
+	"web.h"
+	"news.h"
+
+1463825521 c:\progs\op\projects\courses\prog_base_2\tests\test_1\lib_web\web.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"list.h"
+	"news.h"
+
+1463825501 c:\progs\op\projects\courses\prog_base_2\tests\test_1\lib_web\list.h
+
+1463822870 c:\progs\op\projects\courses\prog_base_2\tests\test_1\lib_web\news.h
+	<stdlib.h>
+
