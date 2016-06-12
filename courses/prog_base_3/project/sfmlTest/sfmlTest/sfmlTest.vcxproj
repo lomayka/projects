@@ -89,6 +89,7 @@
   <ItemGroup>
     <ClInclude Include="List.h" />
     <ClInclude Include="Planet.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="PointF.h" />
     <ClInclude Include="Rocket.h" />
     <ClInclude Include="SpaceShip.h" />

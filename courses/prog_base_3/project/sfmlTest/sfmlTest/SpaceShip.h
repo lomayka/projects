@@ -15,8 +15,10 @@ private: PointF position;
 		 bool isRotate;
 		 float currAngle;
 		 int curr_health;
+		 int weapon;
+		 std::string filename;
 		 
-public: std::string name;
+public: 
 		Image image;
 		Texture texture;
 		Sprite sprite;
@@ -25,15 +27,16 @@ public: std::string name;
 		
 
 
-	SpaceShip(std::string name,PointF startPosition){
-		this->name = name;
+	SpaceShip(std::string filename,PointF startPosition,int health,int weapon){
+		this->filename = filename;
 		this->position = startPosition;
 		this->isMove = false;
 		this->isRotate = false;
 		this->currAngle = 0;
-		this->health = 250;
+		this->health = health;
+		this->weapon = weapon;
 		this->curr_health = this->health;
-		image.loadFromFile("../sfmlTest/images/SpaceShips/" + name + ".png");
+		image.loadFromFile("../sfmlTest/images/SpaceShips/" + filename + ".png");
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 		sprite.setPosition(position.x, position.y);
@@ -101,6 +104,13 @@ public:
 	int getHealth(){
 		return this->health;
 	}
+	void setWeapon(int weapon){
+		this->weapon = weapon;
+	}
+	int getWeapon(){
+		return this->weapon;
+	}
+
 	
 };
 

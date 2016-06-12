@@ -44,5 +44,8 @@
     <ClInclude Include="Rocket.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

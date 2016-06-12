@@ -13,6 +13,8 @@ using namespace sf;
 class Pirate{
 private: PointF position;
 		 int health;
+		 int shield;
+		 int weapon;
 		 int curr_health;
 		 float speed;
 		 bool isMove;
@@ -22,6 +24,8 @@ private: PointF position;
 		 float rotation;
 		 bool isAttack;
 		 bool isFire;
+		 bool isShow;
+		 PointF aim;
 		 PointF spos;
 
 public: std::string name;
@@ -30,7 +34,7 @@ public: std::string name;
 		Sprite sprite;
 
 
-            Pirate(std::string name, PointF startPosition,SpaceShip spaceship){
+            Pirate(std::string name, PointF startPosition){
 			this->name = name;
 			this->position = startPosition;
 			this->isMove = false;
@@ -40,15 +44,16 @@ public: std::string name;
 			this->curr_health = this->health;
 			this->distance = 0;
 			this->speed = 400;
+			this->weapon = 1;
+			this->shield = 1;
 			this->isFire = false;
 			this->isAttack = false;
+			this->isShow = false;
 			image.loadFromFile("../sfmlTest/images/SpaceShips/" + name + ".png");
 			texture.loadFromImage(image);
 			sprite.setTexture(texture);
 			sprite.setPosition(position.x, position.y);
 			sprite.setOrigin(image.getSize().x / 2, image.getSize().y / 2);
-			rotation = (atan2(spaceship.getSpaceShipPosition().y - this->position.y, spaceship.getSpaceShipPosition().x - this->position.x)) * 180 / Pi;
-			sprite.setRotation(rotation);
 		}
 			Pirate()
 			{
@@ -68,18 +73,23 @@ public: std::string name;
 						this->move();
 					}
 					if (isAttack){
-						int dist = sqrt((spos.x - (*spaceship).getSpaceShipPosition().x)*(spos.x - (*spaceship).getSpaceShipPosition().x) + (spos.y - (*spaceship).getSpaceShipPosition().y)*(spos.y - (*spaceship).getSpaceShipPosition().y));
+						isShow = true;
+						int dist = sqrt((spos.x - aim.x)*(spos.x - aim.x) + (spos.y - aim.y)*(spos.y - aim.y));
+						int rot = (atan2(aim.y - this->position.y, aim.x - this->position.x)) * 180 / Pi;
 						std::cout << dist << "\n";
-						if (dist > 50){
-							PointF sp(spos.x + (this->speed / 400) * ((*spaceship).getSpaceShipPosition().x - spos.x) / dist, spos.y + (this->speed / 400) * ((*spaceship).getSpaceShipPosition().y - spos.y) / dist);
+						if (dist > 20){
+							PointF sp(spos.x + (this->speed / 400) * (aim.x - spos.x) / dist, spos.y + (this->speed / 400) * (aim.y - spos.y) / dist);
 							this->spos = sp;
 							
 							(*s).setPosition(spos.x, spos.y);
+							(*s).setRotation(rot);
 						}
 						else
 						{   
 							this->spos = position;
+
 							(*spaceship).setCurrHealth((*spaceship).getCurrHealth() - 10);
+							this->aim = (*spaceship).getSpaceShipPosition();
 						}
 						
 					
@@ -136,8 +146,24 @@ public: std::string name;
 			void setSpos(PointF spos){
 				this->spos = spos;
 			}
+			void setAim(PointF aim){
+				this->aim = aim;
+			}
 			bool getAttack(){
 				return this->isAttack;
+			}
+			bool getShow(){
+				return this->isShow;
+			}
+			void setShow(bool status)
+			{
+				this->isShow = status;
+			}
+			void setShield(int shield){
+				this->shield = shield;
+			}
+			int getShield(){
+				return this->shield;
 			}
 };
 #endif

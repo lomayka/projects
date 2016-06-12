@@ -10,6 +10,7 @@
 #include "List.h"
 #include "Planet.h"
 #include "Rocket.h"
+#include "Player.h"
 #define PlanetFrame 60
 #define Pi 3.14159265
 
@@ -20,6 +21,7 @@
 
 int main()
 {
+	start:
 	RenderWindow window(VideoMode(1280,720), "Test");
 	view.reset(FloatRect(0, 0, 1280, 720));
 	List planet_list,pirate_list;
@@ -43,17 +45,30 @@ int main()
 	spacestationSprite.setTexture(spacestation);
 	PointF spacestationPosition(9000, 1500);
 	spacestationSprite.setPosition(spacestationPosition.x, spacestationPosition.y);
+	SpaceShip * spaceshipsarr[4];
+    spaceshipsarr[0] = new SpaceShip("spaceship1", spacestationPosition, 300, 5);
+	spaceshipsarr[1] = new SpaceShip("spaceship2", spacestationPosition, 150, 2);
+	spaceshipsarr[2] = new SpaceShip("spaceship3", spacestationPosition, 350, 7);
+	spaceshipsarr[3] = new SpaceShip("spaceship4", spacestationPosition, 400, 6);
+
 	
-	PointF spaceshipPoint1(20, 120);
-	SpaceShip myspaceShip2("spaceship6", spaceshipPoint1);
 	PointF sunPosition(6400, 3600);
 	Star sun(sunPosition, "sun");
 	Time t = milliseconds(12);
+	Time t1 = milliseconds(20);
 	CircleShape shape(500,200);
 	shape.setFillColor(sf::Color::Transparent);
 	shape.setOutlineThickness(2);
 	shape.setOutlineColor(sf::Color(255, 0, 0));
 	shape.setOrigin(500, 500);
+	Font font;
+	font.loadFromFile("../sfmlTest/ofont.ru_Academy.ttf");
+	Text newGame("New Game", font, 40);
+	newGame.setColor(Color::Yellow);
+	newGame.setStyle(Text::Bold);
+	Text exit("Exit", font, 40);
+	exit.setColor(Color::Yellow);
+	exit.setStyle(Text::Bold);
 	
 
     int tempX = 0;
@@ -67,21 +82,37 @@ int main()
 	bool isSpaceOnce = false;
 	bool isAttack = false;
 	bool isLock = false;
+	bool isCliked = false;
+	bool SpriteIsSelect[4] = {false,false,false,false};
+	bool SpritesSelectStatus = false;
 	int N = 1000;
+	int M = 0;
 	float explosionCountX = 0;
 	float explosionCountY = 0;
+	int gamePart = 0;
 	PointF center(6400,3600);
 	Rocket rocket;
 	
 	planet.move(center, 1500);
 
-	SpaceShip myspaceShip("spaceship1", spacestationPosition);
-	Pirate p("spaceship6", sunPosition,myspaceShip);
+	Texture StartText;
+	Sprite StartSprite;
+	StartText.loadFromFile("../sfmlTest/images/start1.png");
+	StartSprite.setTexture(StartText);
+	Texture SpaceStationInside;
+	Sprite SpaceStationInsideSprite; 
+	SpaceStationInside.loadFromFile("../sfmlTest/images/spacestationinside2.png");
+	SpaceStationInsideSprite.setTexture(SpaceStationInside);
+	//Player player;
+	SpaceShip myspaceShip = *spaceshipsarr[0];
+	//player.setSpaceship(myspaceShip);
+	Pirate p("spaceship6", sunPosition);
 	p.pirate_setSpeed(400);
 	p.pirate_setHeath(200);
-	Pirate p1("spaceship1", planet.getCoord(), myspaceShip);
+	Pirate p1("spaceship1", planet.getCoord());
 	p1.pirate_setSpeed(400);
 	p1.pirate_setHeath(200);
+	p1.setShield(2);
 	pirate_list.list_add((void *)&p);
 	pirate_list.list_add((void *)&p1);
 	view = getplayercoordinateforview(myspaceShip.getSpaceShipPosition());
@@ -110,102 +141,208 @@ int main()
 	}
 	Texture test;
 	Sprite testSprite;
-	test.loadFromFile("../sfmlTest/images/test.png");
+	test.loadFromFile("../sfmlTest/images/rockets.png");
 	testSprite.setTexture(test);
-
+	Texture spaceships[4];
+	Sprite spaceshipsSprite[4];
+	for (int i = 0; i < 4; i++){
+		spaceships[i].loadFromFile("../sfmlTest/images/SpaceShips/spaceship" + std::to_string(i + 1) + ".png");
+		spaceshipsSprite[i].setTexture(spaceships[i]);
+		int posY = 0;
+		if (i < 2) posY = 80;
+		else posY = 250;
+		spaceshipsSprite[i].setPosition(200 * (i % 2) + 30, posY);
+	}
+	Text info("Info", font, 20);
+	Text chose("", font, 40);
+	info.setPosition(view.getCenter().x - 620, view.getCenter().y - 350);
+	//myspaceShip.setWeapon(3);
+	Clock clockClick;
+	Time timeClick;
 	while (window.isOpen())
 	{
-		
-		
 		Event event;
-
-		for (int i = 0; i < PlanetFrame; i++){
-
-			
 		
-			float time = clock.getElapsedTime().asMicroseconds();
-			clock.restart();
-			time = time / 400;
+		if (gamePart == 0) {
+			while (window.pollEvent(event))
+			{
+				if (event.type == Event::Closed)
+					window.close();
+			}
+			Vector2i pixelPosition = Mouse::getPosition(window);
+			Vector2f position = window.mapPixelToCoords(pixelPosition);
+			if (newGame.getGlobalBounds().contains(position)) newGame.setColor(Color::Red);
+			else newGame.setColor(Color::Yellow);
+			if (exit.getGlobalBounds().contains(position)) exit.setColor(Color::Red);
+			else exit.setColor(Color::Yellow);
+			if (event.type == Event::MouseButtonPressed && newGame.getGlobalBounds().contains(position)){
+				if (event.key.code == Mouse::Left){
+					gamePart = 1;
+				}
+			}
+			if (event.type == Event::MouseButtonPressed && exit.getGlobalBounds().contains(position)){
+				if (event.key.code == Mouse::Left){
+					window.close();
+				}
+			}
 
-			isSpaceOnce = false;
-			for (int j = 0; j < 40; j++){
-				Vector2i pixelPos = Mouse::getPosition(window);
-				Vector2f pos = window.mapPixelToCoords(pixelPos);
-				float time1 = clock1.getElapsedTime().asMicroseconds();
-				clock1.restart();
-				time1= time1 / 200;
-				isPressed = false;
-				
-				
-				while (window.pollEvent(event))
-				{
-					if (event.type == Event::Closed)
-						window.close();
-					if (event.type == Event::MouseButtonPressed)
-					if (event.key.code == Mouse::Left && myspaceShip.getMove() == false){
-						myspaceShip.setMove(true);
-						myspaceShip.setRotate(true);
-						tempAngle = myspaceShip.getCurrAngle();
-						tempX = pos.x;
-						tempY = pos.y;
-						float dX = pos.x - myspaceShip.getSpaceShipPosition().x;
-						float dY = pos.y - myspaceShip.getSpaceShipPosition().y;
-						//float dpX = pos.x - p.getPiratePosition().x;
-						//float dpY = pos.y - p.getPiratePosition().y;
-						rotation = (atan2(dY, dX)) * 180 / Pi;
-						//r = (atan2(dpY, dX)) * 180 / Pi;
-						if (rotation < 0) rotation = 360 + rotation;
-						myspaceShip.setCurrAngle(rotation);
-						//p.sprite.setRotation(rotation);
-	                    
+				newGame.setPosition(100, 450);
+				exit.setPosition(100, 550);
+				window.draw(StartSprite);
+				window.draw(newGame);
+				window.draw(exit);
+				window.display();
+				window.clear();
+				sleep(t1);
+		}
+		else if (gamePart == 1)
+		{
+			while (window.pollEvent(event))
+			{
+				if (event.type == Event::Closed)
+					window.close();
+			}
+			
+			chose.setString("Choose your spaceship:");
+			chose.setPosition(20, 10);
+			
+			Vector2i pixelPosition = Mouse::getPosition(window);
+			Vector2f position = window.mapPixelToCoords(pixelPosition);
+			int num = 1000;
+			for (int i = 0; i < 4; i++){
+				if (spaceshipsSprite[i].getGlobalBounds().contains(position)){
+					if (event.type == Event::MouseButtonPressed && event.key.code == Mouse::Left){
+						timeClick = clockClick.getElapsedTime();
+						if (timeClick.asMilliseconds() > 200){
+							if (!SpriteIsSelect[i])
+							{
+								for (int j = 0; j < 4; j++){
+									SpriteIsSelect[j] = false;
+									spaceshipsSprite[j].setColor(Color::White);
+								}
+								spaceshipsSprite[i].setColor(Color::Green);
+								SpriteIsSelect[i] = true;
+								myspaceShip = *spaceshipsarr[i];
+								gamePart = 2;
+							}
+							else
+							{
+								spaceshipsSprite[i].setColor(Color::White);
+								SpriteIsSelect[i] = false;
+							}
+							clockClick.restart();
+						}
+						
 						
 					}
-					if (event.key.code == Mouse::Right && myspaceShip.getMove() == true || event.key.code == Mouse::Right && myspaceShip.getRotate() == true){
-						myspaceShip.setMove(false);
-						myspaceShip.setRotate(false);
-						myspaceShip.setCurrAngle(tempAngle);
-					}
 				}
-				
-				    
-				if (myspaceShip.getMove() && myspaceShip.getRotate()){
-					//std::cout << "Rotation" << rotation << "\n" <<"Temp Angle" <<tempAngle << "\n";
-					if (tempAngle < rotation){
-						if (rotation - tempAngle < 180){
-							myspaceShip.sprite.setRotation(tempAngle);
-							tempAngle += 1.5;
+			}
+			
+			window.draw(SpaceStationInsideSprite);
+			window.draw(chose);
+			for (int i = 0; i < 4; i++){
+				window.draw(spaceshipsSprite[i]);
+			}
+			window.display();
+			window.clear();
+			sleep(t1);
+
+
+
+		}
+		else {
+
+			
+
+			for (int i = 0; i < PlanetFrame; i++){
+
+
+
+				float time = clock.getElapsedTime().asMicroseconds();
+				clock.restart();
+				time = time / 400;
+
+				isSpaceOnce = false;
+				for (int j = 0; j < 40; j++){
+					Vector2i pixelPos = Mouse::getPosition(window);
+					Vector2f pos = window.mapPixelToCoords(pixelPos);
+					float time1 = clock1.getElapsedTime().asMicroseconds();
+					clock1.restart();
+					time1 = time1 / 200;
+					isPressed = false;
+
+
+					while (window.pollEvent(event))
+					{
+						if (event.type == Event::Closed)
+							window.close();
+						if (event.type == Event::MouseButtonPressed)
+						if (event.key.code == Mouse::Left && myspaceShip.getMove() == false){
+							myspaceShip.setMove(true);
+							myspaceShip.setRotate(true);
+							tempAngle = myspaceShip.getCurrAngle();
+							tempX = pos.x;
+							tempY = pos.y;
+							float dX = pos.x - myspaceShip.getSpaceShipPosition().x;
+							float dY = pos.y - myspaceShip.getSpaceShipPosition().y;
+							//float dpX = pos.x - p.getPiratePosition().x;
+							//float dpY = pos.y - p.getPiratePosition().y;
+							rotation = (atan2(dY, dX)) * 180 / Pi;
+							//r = (atan2(dpY, dX)) * 180 / Pi;
+							if (rotation < 0) rotation = 360 + rotation;
+							myspaceShip.setCurrAngle(rotation);
+							//p.sprite.setRotation(rotation);
+
+
 						}
-						else {
-							tempAngle += 360;
-							myspaceShip.sprite.setRotation(tempAngle);
-							tempAngle -= 1.5;
+
+
+						if (event.key.code == Mouse::Right && myspaceShip.getMove() == true || event.key.code == Mouse::Right && myspaceShip.getRotate() == true){
+							myspaceShip.setMove(false);
+							myspaceShip.setRotate(false);
+							myspaceShip.setCurrAngle(tempAngle);
 						}
-						//std::cout <<"TA is:" <<tempAngle << "\n";
 					}
-					else if (tempAngle > rotation) {
-						if (tempAngle - rotation < 180){
-							myspaceShip.sprite.setRotation(tempAngle);
-							tempAngle -= 1.5;
+
+
+					if (myspaceShip.getMove() && myspaceShip.getRotate()){
+						//std::cout << "Rotation" << rotation << "\n" <<"Temp Angle" <<tempAngle << "\n";
+						if (tempAngle < rotation){
+							if (rotation - tempAngle < 180){
+								myspaceShip.sprite.setRotation(tempAngle);
+								tempAngle += 1.5;
+							}
+							else {
+								tempAngle += 360;
+								myspaceShip.sprite.setRotation(tempAngle);
+								tempAngle -= 1.5;
+							}
+							//std::cout <<"TA is:" <<tempAngle << "\n";
 						}
-						else {
-							tempAngle -= 360;
-							myspaceShip.sprite.setRotation(tempAngle);
-							tempAngle += 1.5;
+						else if (tempAngle > rotation) {
+							if (tempAngle - rotation < 180){
+								myspaceShip.sprite.setRotation(tempAngle);
+								tempAngle -= 1.5;
+							}
+							else {
+								tempAngle -= 360;
+								myspaceShip.sprite.setRotation(tempAngle);
+								tempAngle += 1.5;
+							}
 						}
+						if (tempAngle + 1.5 > rotation && tempAngle < rotation || tempAngle - 1.5 < rotation && tempAngle > rotation)
+							myspaceShip.setRotate(false);
 					}
-					if (tempAngle + 1.5 > rotation && tempAngle < rotation || tempAngle - 1.5 < rotation && tempAngle > rotation)
-					myspaceShip.setRotate(false);
-				}
 
 					if (myspaceShip.getMove() && !myspaceShip.getRotate()){
 						distance = sqrt((tempX - myspaceShip.getSpaceShipPosition().x)*(tempX - myspaceShip.getSpaceShipPosition().x) + (tempY - myspaceShip.getSpaceShipPosition().y)*(tempY - myspaceShip.getSpaceShipPosition().y));
 						if (distance > 2){
 							PointF sp(myspaceShip.getSpaceShipPosition().x + 2 * (tempX - myspaceShip.getSpaceShipPosition().x) / distance, myspaceShip.getSpaceShipPosition().y + 2 * (tempY - myspaceShip.getSpaceShipPosition().y) / distance);
 							myspaceShip.setSpaceShipPosition(sp);
-					
+
 						}
 
-						else myspaceShip.setMove(false); 
+						else myspaceShip.setMove(false);
 					}
 					for (int n = 0; n < pirate_list.list_getSize(); n++){
 						int dist = sqrt(((*(Pirate *)pirate_list.list_getById(n)).getPiratePosition().x - myspaceShip.getSpaceShipPosition().x)*((*(Pirate *)pirate_list.list_getById(n)).getPiratePosition().x - myspaceShip.getSpaceShipPosition().x) + ((*(Pirate *)pirate_list.list_getById(n)).getPiratePosition().y - myspaceShip.getSpaceShipPosition().y)*((*(Pirate *)pirate_list.list_getById(n)).getPiratePosition().y - myspaceShip.getSpaceShipPosition().y));
@@ -215,9 +352,10 @@ int main()
 							Pirate pirate = (*(Pirate *)pirate_list.list_getById(n));
 							if (pirate.sprite.getGlobalBounds().contains(position) && (n == N || N == 1000)){
 								if (event.type == Event::MouseButtonPressed){
-									if (event.key.code == Mouse::Right && !isSelected ){
+									if (event.key.code == Mouse::Right && !isSelected){
 										isSelected = true;
 										N = n;
+										M = n;
 									}
 									else if (event.key.code == Mouse::Right && isSelected){
 										isSelected = false;
@@ -229,23 +367,24 @@ int main()
 
 							}
 							else if (!pirate.sprite.getGlobalBounds().contains(position) && !isSelected) (*(Pirate *)pirate_list.list_getById(n)).sprite.setColor(Color::White);
-							if (Keyboard::isKeyPressed(Keyboard::Space) && isSelected && !isSpaceOnce)
+							if (Keyboard::isKeyPressed(Keyboard::Space) && isSelected && !isSpaceOnce && !isAttack)
 							{
 								isAttack = true;
 								//N = n;
 								rocket.rocket_setStartPosition(myspaceShip.getSpaceShipPosition());
 								rocket.rocket_setPirate((*(Pirate *)pirate_list.list_getById(n)));
-								
+
 								isSpaceOnce = true;
 								std::cout << "Health: " << (*(Pirate *)pirate_list.list_getById(n)).pirate_getHealth() << "\n";
 							}
 							if ((*(Pirate *)pirate_list.list_getById(n)).pirate_getCurrHealth() <= 0)
 							{
-								
+
 								(*(Pirate *)pirate_list.list_getById(n)).image.loadFromFile("../sfmlTest/images/explode.png");
 								(*(Pirate *)pirate_list.list_getById(n)).texture.loadFromImage((*(Pirate *)pirate_list.list_getById(n)).image);
 								(*(Pirate *)pirate_list.list_getById(n)).sprite.setTexture((*(Pirate *)pirate_list.list_getById(n)).texture);
-								(*(Pirate *)pirate_list.list_getById(n)).sprite.setTextureRect(IntRect(int(explosionCountX)*128, 128*int(explosionCountY), 128, 128));
+								(*(Pirate *)pirate_list.list_getById(n)).sprite.setTextureRect(IntRect(int(explosionCountX) * 128, 128 * int(explosionCountY), 128, 128));
+								(*(Pirate *)pirate_list.list_getById(n)).setShow(false);
 								explosionCountX += 0.3;
 								if (explosionCountX > 3){
 									explosionCountX = 0;
@@ -257,9 +396,10 @@ int main()
 								rocket.rocket_setPirate((*(Pirate *)pirate_list.list_getById(N)));
 								if (rocket.Fire()){
 									std::cout << "OK";
-									(*(Pirate *)pirate_list.list_getById(N)).pirate_setCurrHealth((*(Pirate *)pirate_list.list_getById(N)).pirate_getCurrHealth() - 25);
+									(*(Pirate *)pirate_list.list_getById(N)).pirate_setCurrHealth((*(Pirate *)pirate_list.list_getById(N)).pirate_getCurrHealth() - 25 * (float)myspaceShip.getWeapon() / (*(Pirate *)pirate_list.list_getById(N)).getShield());
 									rocket.rocket_setStartPosition(myspaceShip.getSpaceShipPosition());
 									(*(Pirate *)pirate_list.list_getById(N)).pirate_setAttack();
+									(*(Pirate *)pirate_list.list_getById(N)).setAim(myspaceShip.getSpaceShipPosition());
 									(*(Pirate *)pirate_list.list_getById(N)).setSpos((*(Pirate *)pirate_list.list_getById(N)).getPiratePosition());
 
 									rocket.move();
@@ -269,9 +409,9 @@ int main()
 									explosionCountY = 0;
 									explosionCountX = 0;
 								}
-							
+
 							}
-						} 
+						}
 					}
 
 
@@ -293,82 +433,100 @@ int main()
 					else if (Keyboard::isKeyPressed(Keyboard::Num6)){
 						myspaceShip.changeBody("spaceship6");
 					}
+					else if (Keyboard::isKeyPressed(Keyboard::Escape)){
+						gamePart = 0;
+						goto start;
+					}
 					else if (Keyboard::isKeyPressed(Keyboard::Q)){
 						if (!isPressed){
 							myspaceShip.setCurrHealth(myspaceShip.getCurrHealth() - 5);
 							isPressed = true;
 						}
-						
+
 					}
 					else if (Keyboard::isKeyPressed(Keyboard::T))
 					{
-						
+
 					}
-					
-					
-				window.draw(fonsprite);
-				window.draw(sun.sprite);
-				for (int n = 0; n < planet_list.list_getSize(); n++){
-					window.draw((*(Planet *)planet_list.list_getById(n)).sprites[i]);
-				}
-				window.draw(spacestationSprite);
-				if (isAttack && N != 1000) window.draw(rocket.sprite);
-				if ( pirate_list.list_getSize()!= 0) window.draw(testSprite);
-				window.draw(myspaceShip.sprite);
-				window.draw(myspaceShip2.sprite);
-				
-				for (int n = 0; n < pirate_list.list_getSize(); n++){
-				     window.draw((*(Pirate *)pirate_list.list_getById(n)).sprite);
-				}
-				if (att_status == 1){
-					shape.setPosition(myspaceShip.getSpaceShipPosition().x, myspaceShip.getSpaceShipPosition().y);
-					window.draw(shape);
-				}
-				window.draw(healthBarSprite);
-				if (isSelected) window.draw(healthBarEnemySprite);
-				float k = (float)myspaceShip.getCurrHealth() / myspaceShip.getHealth();
-				for (int o = 0; o < k * 108;o++) window.draw(healthSprite[o]);
-				if (isSelected)
-				{
-					float k1 = (float)(*(Pirate *)pirate_list.list_getById(N)).pirate_getCurrHealth() / (*(Pirate *)pirate_list.list_getById(N)).pirate_getHealth();
-					for (int o = 0; o < k1 * 108; o++)
-						window.draw(healthEnemysSprite[o]);
-				}
-				window.display();
-				window.setView(view);
-				healthBarSprite.setPosition(view.getCenter().x + 590, view.getCenter().y + 200);
-				healthBarEnemySprite.setPosition(view.getCenter().x - 630, view.getCenter().y + 200);
-				for (int o = 0; o < k * 108; o++) healthSprite[o].setPosition(view.getCenter().x + 598, view.getCenter().y + 328 - o);;
-				
-				if (isSelected)
-				{
-					float k1 = (float)(*(Pirate *)pirate_list.list_getById(N)).pirate_getCurrHealth() / (*(Pirate *)pirate_list.list_getById(N)).pirate_getHealth();
-					for (int o = 0; o <  k1 * 108; o++)
-						healthEnemysSprite[o].setPosition(view.getCenter().x - 622, view.getCenter().y + 328 - o);
-				}
-				//std::cout << view.getCenter().x << " + " << view.getCenter().y << "\n";
-				window.clear();
-				myspaceShip.move();
-				
-				for (int n = 0; n < pirate_list.list_getSize(); n++){
-					testSprite.setPosition((*(Pirate *)pirate_list.list_getById(n)).getPiratePosition().x, (*(Pirate *)pirate_list.list_getById(n)).getPiratePosition().y);
-					(*(Pirate *)pirate_list.list_getById(n)).AI(&myspaceShip,&planet_list,&testSprite);
-				}
-				
-				for (int n = 0; n < planet_list.list_getSize(); n++){
-					(*(Planet *)planet_list.list_getById(n)).move(center, (n+2)*800);
+
+
+					window.draw(fonsprite);
+					window.draw(sun.sprite);
+					for (int n = 0; n < planet_list.list_getSize(); n++){
+						window.draw((*(Planet *)planet_list.list_getById(n)).sprites[i]);
+					}
+					window.draw(spacestationSprite);
+					if (isAttack && N != 1000) window.draw(rocket.sprite);
+					if (pirate_list.list_getSize() != 0 && (*(Pirate *)pirate_list.list_getById(M)).getShow()) window.draw(testSprite);
+					window.draw(myspaceShip.sprite);
+
+					for (int n = 0; n < pirate_list.list_getSize(); n++){
+						window.draw((*(Pirate *)pirate_list.list_getById(n)).sprite);
+					}
+					if (att_status == 1){
+						shape.setPosition(myspaceShip.getSpaceShipPosition().x, myspaceShip.getSpaceShipPosition().y);
+						window.draw(shape);
+					}
+					window.draw(healthBarSprite);
+					if (isSelected) window.draw(healthBarEnemySprite);
+					float k = (float)myspaceShip.getCurrHealth() / myspaceShip.getHealth();
+					for (int o = 0; o < k * 108; o++) window.draw(healthSprite[o]);
+					if (isSelected)
+					{
+						float k1 = (float)(*(Pirate *)pirate_list.list_getById(N)).pirate_getCurrHealth() / (*(Pirate *)pirate_list.list_getById(N)).pirate_getHealth();
+						for (int o = 0; o < k1 * 108; o++)
+							window.draw(healthEnemysSprite[o]);
+					}
+					if (isSelected){		
+						window.draw(info);
+					}
+					window.display();
+					window.setView(view);
+					healthBarSprite.setPosition(view.getCenter().x + 590, view.getCenter().y + 200);
+					healthBarEnemySprite.setPosition(view.getCenter().x - 630, view.getCenter().y + 200);
+					for (int o = 0; o < k * 108; o++) healthSprite[o].setPosition(view.getCenter().x + 598, view.getCenter().y + 328 - o);;
+
+					if (isSelected)
+					{
+						float k1 = (float)(*(Pirate *)pirate_list.list_getById(N)).pirate_getCurrHealth() / (*(Pirate *)pirate_list.list_getById(N)).pirate_getHealth();
+						for (int o = 0; o < k1 * 108; o++)
+							healthEnemysSprite[o].setPosition(view.getCenter().x - 622, view.getCenter().y + 328 - o);
+					}
+					//std::cout << view.getCenter().x << " + " << view.getCenter().y << "\n";
+					if (isSelected){
+
+						info.setPosition(view.getCenter().x - 620, view.getCenter().y - 350);
+						int h = (*(Pirate *)pirate_list.list_getById(N)).pirate_getCurrHealth();
+						std::string infostr;
+						infostr.append("Name: Test\nHealth: ");
+						infostr.append(std::to_string(h));
+						infostr.append("\nShield: ");
+						infostr.append(std::to_string((*(Pirate *)pirate_list.list_getById(N)).getShield()));
+						info.setString(infostr);
+					}
+					window.clear();
+					myspaceShip.move();
+
+					for (int n = 0; n < pirate_list.list_getSize(); n++){
+						testSprite.setPosition((*(Pirate *)pirate_list.list_getById(n)).getPiratePosition().x, (*(Pirate *)pirate_list.list_getById(n)).getPiratePosition().y);
+						(*(Pirate *)pirate_list.list_getById(n)).AI(&myspaceShip, &planet_list, &testSprite);
+					}
+
+					for (int n = 0; n < planet_list.list_getSize(); n++){
+						(*(Planet *)planet_list.list_getById(n)).move(center, (n + 2) * 800);
+					}
+
+
+
+					viewmap(time1);
+					sleep(t);
+
 				}
 
-					
-					
-				viewmap(time1);
-				sleep(t);
+
+
 
 			}
-			
-			
-			
-			
 		}
 		
 	}
