@@ -19,12 +19,12 @@ View viewmap(float time) {
 
 
 	if (Keyboard::isKeyPressed(Keyboard::D)) {
-		if (view.getCenter().x < 12000)
+		if (view.getCenter().x < 10000)
 		   view.move(0.1*time, 0);
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::S)) {
-		if (view.getCenter().y < 6700)
+		if (view.getCenter().y < 5900)
 		   view.move(0, 0.1*time);
 	}
 

@@ -12,6 +12,7 @@ using namespace sf;
 
 class Pirate{
 private: PointF position;
+		 std::string pname;
 		 int health;
 		 int shield;
 		 int weapon;
@@ -34,21 +35,22 @@ public: std::string name;
 		Sprite sprite;
 
 
-            Pirate(std::string name, PointF startPosition){
+            Pirate(std::string name, PointF startPosition,int health,int speed,int weapon,int shield,std::string pname){
 			this->name = name;
 			this->position = startPosition;
 			this->isMove = false;
 			this->isRotate = false;
 			this->currAngle = 0;
-			this->health = 200;
+			this->health = health;
 			this->curr_health = this->health;
 			this->distance = 0;
-			this->speed = 400;
-			this->weapon = 1;
-			this->shield = 1;
+			this->speed = speed;
+			this->weapon = weapon;
+			this->shield = shield;
 			this->isFire = false;
 			this->isAttack = false;
 			this->isShow = false;
+			this->pname = pname;
 			image.loadFromFile("../sfmlTest/images/SpaceShips/" + name + ".png");
 			texture.loadFromImage(image);
 			sprite.setTexture(texture);
@@ -88,7 +90,7 @@ public: std::string name;
 						{   
 							this->spos = position;
 
-							(*spaceship).setCurrHealth((*spaceship).getCurrHealth() - 10);
+							(*spaceship).setCurrHealth((*spaceship).getCurrHealth() - 25 * this->weapon / (*spaceship).getShield());
 							this->aim = (*spaceship).getSpaceShipPosition();
 						}
 						
@@ -164,6 +166,16 @@ public: std::string name;
 			}
 			int getShield(){
 				return this->shield;
+			}
+			int getWeapon(){
+				return this->weapon;
+			}
+			std::string getName(){
+				return this->pname;
+			}
+			int getSpeed()
+			{
+				return this->speed;
 			}
 };
 #endif

@@ -21,8 +21,8 @@
 
 int main()
 {
-	start:
-	RenderWindow window(VideoMode(1280,720), "Test");
+	
+	
 	view.reset(FloatRect(0, 0, 1280, 720));
 	List planet_list,pirate_list;
 	PointF point(4300,1900 );
@@ -37,7 +37,7 @@ int main()
 	
 	Texture fon;
 	Sprite fonsprite;
-	fon.loadFromFile("../sfmlTest/images/gFon.png");
+	fon.loadFromFile("../sfmlTest/images/gFonTest.png");
 	fonsprite.setTexture(fon);
 	Texture spacestation;
 	Sprite spacestationSprite;
@@ -46,13 +46,13 @@ int main()
 	PointF spacestationPosition(9000, 1500);
 	spacestationSprite.setPosition(spacestationPosition.x, spacestationPosition.y);
 	SpaceShip * spaceshipsarr[4];
-    spaceshipsarr[0] = new SpaceShip("spaceship1", spacestationPosition, 300, 5);
-	spaceshipsarr[1] = new SpaceShip("spaceship2", spacestationPosition, 150, 2);
-	spaceshipsarr[2] = new SpaceShip("spaceship3", spacestationPosition, 350, 7);
-	spaceshipsarr[3] = new SpaceShip("spaceship4", spacestationPosition, 400, 6);
+    spaceshipsarr[0] = new SpaceShip("spaceship1", spacestationPosition, 300, 5,5,500);
+	spaceshipsarr[1] = new SpaceShip("spaceship2", spacestationPosition, 150, 2, 3, 650);
+	spaceshipsarr[2] = new SpaceShip("spaceship3", spacestationPosition, 350, 7,6,550);
+	spaceshipsarr[3] = new SpaceShip("spaceship4", spacestationPosition, 400, 6,6,600);
 
 	
-	PointF sunPosition(6400, 3600);
+	PointF sunPosition(5400, 3100);
 	Star sun(sunPosition, "sun");
 	Time t = milliseconds(12);
 	Time t1 = milliseconds(20);
@@ -69,6 +69,12 @@ int main()
 	Text exit("Exit", font, 40);
 	exit.setColor(Color::Yellow);
 	exit.setStyle(Text::Bold);
+	Text start("", font, 40);
+	Text repair("", font, 40);
+	Text h("", font, 40);
+	Text w("", font, 40);
+	Text s("", font, 40);
+	Text spaceshipinfo("", font, 40);
 	
 
     int tempX = 0;
@@ -79,6 +85,8 @@ int main()
 	bool att_status = false;
 	bool isPressed = false;
 	bool isSelected = false;
+	bool isPlanetSelected = false;
+	bool isStationSelected = false;
 	bool isSpaceOnce = false;
 	bool isAttack = false;
 	bool isLock = false;
@@ -87,10 +95,11 @@ int main()
 	bool SpritesSelectStatus = false;
 	int N = 1000;
 	int M = 0;
+	int PlanetNum = 1000;
 	float explosionCountX = 0;
 	float explosionCountY = 0;
 	int gamePart = 0;
-	PointF center(6400,3600);
+	PointF center(5400,3100);
 	Rocket rocket;
 	
 	planet.move(center, 1500);
@@ -103,16 +112,16 @@ int main()
 	Sprite SpaceStationInsideSprite; 
 	SpaceStationInside.loadFromFile("../sfmlTest/images/spacestationinside2.png");
 	SpaceStationInsideSprite.setTexture(SpaceStationInside);
+	Texture PlanetInside;
+	Sprite PlanetInsideSprite;
+	PlanetInside.loadFromFile("../sfmlTest/images/city.png");
+	PlanetInsideSprite.setTexture(PlanetInside);
 	//Player player;
 	SpaceShip myspaceShip = *spaceshipsarr[0];
 	//player.setSpaceship(myspaceShip);
-	Pirate p("spaceship6", sunPosition);
-	p.pirate_setSpeed(400);
-	p.pirate_setHeath(200);
-	Pirate p1("spaceship1", planet.getCoord());
-	p1.pirate_setSpeed(400);
-	p1.pirate_setHeath(200);
-	p1.setShield(2);
+	Pirate p("spaceship6", sunPosition, 200, 500, 2, 2,"Test");
+	PointF pposit(spacestationPosition.x + 200, spacestationPosition.y + 100);
+	Pirate p1("spaceship1", pposit, 300, 500, 5, 5,"Nigadai");
 	pirate_list.list_add((void *)&p);
 	pirate_list.list_add((void *)&p1);
 	view = getplayercoordinateforview(myspaceShip.getSpaceShipPosition());
@@ -155,10 +164,15 @@ int main()
 	}
 	Text info("Info", font, 20);
 	Text chose("", font, 40);
+	Text description("", font, 30);
+	description.setColor(Color::Yellow);
 	info.setPosition(view.getCenter().x - 620, view.getCenter().y - 350);
 	//myspaceShip.setWeapon(3);
-	Clock clockClick;
-	Time timeClick;
+	Clock clockClick, clockPirate, clockPlanet, clockStation,upgradeHealthClock;
+	Time timeClick, timePirate, timePlanet, timeStation, upgradeHealthTime;
+start:
+	RenderWindow window(VideoMode(1280, 720), "Test");
+
 	while (window.isOpen())
 	{
 		Event event;
@@ -188,6 +202,7 @@ int main()
 
 				newGame.setPosition(100, 450);
 				exit.setPosition(100, 550);
+				
 				window.draw(StartSprite);
 				window.draw(newGame);
 				window.draw(exit);
@@ -222,13 +237,21 @@ int main()
 								}
 								spaceshipsSprite[i].setColor(Color::Green);
 								SpriteIsSelect[i] = true;
-								myspaceShip = *spaceshipsarr[i];
-								gamePart = 2;
+								std::string des = "Description:\nHealth: ";
+								des.append(std::to_string(spaceshipsarr[i]->getCurrHealth()));
+								des.append("\nWeapon level(1-10): " + std::to_string(spaceshipsarr[i]->getWeapon()));
+								des.append("\nProtection level(1-10): " + std::to_string(spaceshipsarr[i]->getShield()));
+								des.append("\nSpeed: " + std::to_string(spaceshipsarr[i]->getSpeed()));
+								description.setString(des);
+
+								description.setPosition(950, 10);
 							}
 							else
 							{
 								spaceshipsSprite[i].setColor(Color::White);
 								SpriteIsSelect[i] = false;
+								description.setString("");
+
 							}
 							clockClick.restart();
 						}
@@ -236,13 +259,30 @@ int main()
 						
 					}
 				}
+				
+				start.setPosition(100, 500);
+				start.setString("Start game");
+				if (start.getGlobalBounds().contains(position)) start.setColor(Color::Red);
+				else start.setColor(Color::Yellow);
+				if (start.getGlobalBounds().contains(position) && event.type == Event::MouseButtonPressed && event.key.code == Mouse::Left){
+					for (int k = 0; k < 4; k++){
+						if (SpriteIsSelect[k]) {
+							myspaceShip = *spaceshipsarr[k];
+							gamePart = 2;
+						}
+					}
+					
+				}
 			}
+
 			
 			window.draw(SpaceStationInsideSprite);
 			window.draw(chose);
 			for (int i = 0; i < 4; i++){
 				window.draw(spaceshipsSprite[i]);
 			}
+			window.draw(start);
+			window.draw(description);
 			window.display();
 			window.clear();
 			sleep(t1);
@@ -250,7 +290,69 @@ int main()
 
 
 		}
-		else {
+		else if (gamePart == 3){
+			while (window.pollEvent(event))
+			{
+				if (event.type == Event::Closed)
+					window.close();
+			}
+			Vector2i pixelPosition = Mouse::getPosition(window);
+			Vector2f position = window.mapPixelToCoords(pixelPosition);
+			start.setPosition(650, 550);
+			start.setString("Start");
+			if (start.getGlobalBounds().contains(position)) start.setColor(Color::Red);
+			else start.setColor(Color::Yellow);
+			repair.setPosition(100, 20);
+			repair.setString("Repair");
+			h.setPosition(100, 80);
+			h.setString("Upgrade Health");
+			w.setPosition(100, 140);
+			w.setString("Upgrade Weapon");
+
+
+			if (repair.getGlobalBounds().contains(position)) repair.setColor(Color::Red);
+			else repair.setColor(Color::Yellow);
+			if (w.getGlobalBounds().contains(position)) w.setColor(Color::Red);
+			else w.setColor(Color::Yellow);
+			if (h.getGlobalBounds().contains(position)) h.setColor(Color::Red);
+			else h.setColor(Color::Yellow);
+			upgradeHealthTime = upgradeHealthClock.getElapsedTime();
+
+			if (h.getGlobalBounds().contains(position) && event.type == Event::MouseButtonPressed && event.key.code == Mouse::Left){
+				if (upgradeHealthTime.asMilliseconds() > 200){
+					if (myspaceShip.getHealth() < 800) myspaceShip.setHealth(myspaceShip.getHealth() + 15);
+					upgradeHealthClock.restart();
+				}
+			}
+			if (w.getGlobalBounds().contains(position) && event.type == Event::MouseButtonPressed && event.key.code == Mouse::Left){
+				if (upgradeHealthTime.asMilliseconds() > 200){
+					if (myspaceShip.getWeapon() < 10) myspaceShip.setWeapon(myspaceShip.getWeapon() + 1);
+					upgradeHealthClock.restart();
+				}
+			}
+			if (repair.getGlobalBounds().contains(position) && event.type == Event::MouseButtonPressed && event.key.code == Mouse::Left){
+				myspaceShip.setCurrHealth(myspaceShip.getHealth());
+
+			}
+			if (start.getGlobalBounds().contains(position) && event.type == Event::MouseButtonPressed && event.key.code == Mouse::Left){
+						gamePart = 2;
+						goto start;
+					
+				
+
+			}
+			window.draw(PlanetInsideSprite);
+			window.draw(start);
+			window.draw(repair);
+			window.draw(h);
+			window.draw(w);
+			window.display();
+			window.clear();
+			sleep(t1);
+
+		}
+
+		else if(gamePart == 2) {
 
 			
 
@@ -337,7 +439,7 @@ int main()
 					if (myspaceShip.getMove() && !myspaceShip.getRotate()){
 						distance = sqrt((tempX - myspaceShip.getSpaceShipPosition().x)*(tempX - myspaceShip.getSpaceShipPosition().x) + (tempY - myspaceShip.getSpaceShipPosition().y)*(tempY - myspaceShip.getSpaceShipPosition().y));
 						if (distance > 2){
-							PointF sp(myspaceShip.getSpaceShipPosition().x + 2 * (tempX - myspaceShip.getSpaceShipPosition().x) / distance, myspaceShip.getSpaceShipPosition().y + 2 * (tempY - myspaceShip.getSpaceShipPosition().y) / distance);
+							PointF sp(myspaceShip.getSpaceShipPosition().x + (float)myspaceShip.getSpeed() / 250 * (tempX - myspaceShip.getSpaceShipPosition().x) / distance, myspaceShip.getSpaceShipPosition().y + (float)myspaceShip.getSpeed()/250 * (tempY - myspaceShip.getSpaceShipPosition().y) / distance);
 							myspaceShip.setSpaceShipPosition(sp);
 
 						}
@@ -352,15 +454,19 @@ int main()
 							Pirate pirate = (*(Pirate *)pirate_list.list_getById(n));
 							if (pirate.sprite.getGlobalBounds().contains(position) && (n == N || N == 1000)){
 								if (event.type == Event::MouseButtonPressed){
-									if (event.key.code == Mouse::Right && !isSelected){
-										isSelected = true;
-										N = n;
-										M = n;
-									}
-									else if (event.key.code == Mouse::Right && isSelected){
-										isSelected = false;
-										N = 1000;
-										(*(Pirate *)pirate_list.list_getById(n)).sprite.setColor(Color::White);
+									timePirate = clockPirate.getElapsedTime();
+									if (timePirate.asMilliseconds() > 200){
+										if (event.key.code == Mouse::Right && !isSelected){
+											isSelected = true;
+											N = n;
+											M = n;
+										}
+										else if (event.key.code == Mouse::Right && isSelected){
+											isSelected = false;
+											N = 1000;
+											(*(Pirate *)pirate_list.list_getById(n)).sprite.setColor(Color::White);
+										}
+										clockPirate.restart();
 									}
 								}
 								(*(Pirate *)pirate_list.list_getById(n)).sprite.setColor(Color::Red);
@@ -413,6 +519,86 @@ int main()
 							}
 						}
 					}
+					for (int n = 0; n < planet_list.list_getSize(); n++){
+						for (int l = 0; l < 60; l++){
+							Vector2i pixelPosition = Mouse::getPosition(window);
+							Vector2f position = window.mapPixelToCoords(pixelPosition);
+							if ((*(Planet *)planet_list.list_getById(n)).sprites[l].getGlobalBounds().contains(position)){
+								for (int k = 0; k < 60; k++) (*(Planet *)planet_list.list_getById(n)).sprites[k].setColor(Color::Green);
+								}
+								else if (!(*(Planet *)planet_list.list_getById(n)).sprites[l].getGlobalBounds().contains(position) && !isPlanetSelected) for (int k = 0; k < 60; k++) (*(Planet *)planet_list.list_getById(n)).sprites[k].setColor(Color::White);
+							timePlanet = clockPlanet.getElapsedTime();
+							if (event.type == Event::MouseButtonPressed && (*(Planet *)planet_list.list_getById(n)).sprites[l].getGlobalBounds().contains(position)){
+								
+									if (timePlanet.asMilliseconds() > 200){
+										if (event.key.code == Mouse::Right && !isPlanetSelected)
+										{
+
+										isPlanetSelected = true;
+										PlanetNum = n;
+										for (int k = 0; k < 60; k++) (*(Planet *)planet_list.list_getById(n)).sprites[k].setColor(Color::Green);
+										clockPlanet.restart();
+										break;
+									}
+								}
+								
+									if (timePlanet.asMilliseconds() > 200){
+										if (event.key.code == Mouse::Right && isPlanetSelected)
+										{
+										isPlanetSelected = false;
+										PlanetNum = 1000;
+										for (int k = 0; k < 60; k++) (*(Planet *)planet_list.list_getById(n)).sprites[k].setColor(Color::White);
+										clockPlanet.restart();
+									}
+								}
+							}
+							
+						}
+					}
+					Vector2i pixelPosition = Mouse::getPosition(window);
+					Vector2f position = window.mapPixelToCoords(pixelPosition);
+
+					if (spacestationSprite.getGlobalBounds().contains(position)){
+
+						spacestationSprite.setColor(Color::Green);
+						timeStation = clockStation.getElapsedTime();
+						if (event.type == Event::MouseButtonPressed && event.key.code == Mouse::Right && !isStationSelected){
+							if (timeStation.asMilliseconds() > 200){
+								isStationSelected = true;
+								spacestationSprite.setColor(Color::Green);
+								clockStation.restart();
+							}
+						}
+						else if (event.type == Event::MouseButtonPressed && event.key.code == Mouse::Right && isStationSelected)
+						{
+							if (timeStation.asMilliseconds() > 200){
+								isStationSelected = false;
+								spacestationSprite.setColor(Color::White);
+								clockStation.restart();
+							}
+						}
+					}
+					else if (!spacestationSprite.getGlobalBounds().contains(position) && !isStationSelected) spacestationSprite.setColor(Color::White);
+					if (spacestationSprite.getGlobalBounds().contains(myspaceShip.getSpaceShipPosition().x, myspaceShip.getSpaceShipPosition().y) && isStationSelected){
+						gamePart = 1;
+						isStationSelected = false;
+						spacestationSprite.setColor(Color::White);
+						goto start;
+					}
+					if (PlanetNum != 1000){
+						
+						if ((*(Planet *)planet_list.list_getById(PlanetNum)).sprites[0].getGlobalBounds().contains(myspaceShip.getSpaceShipPosition().x, myspaceShip.getSpaceShipPosition().y))
+						{
+							
+							gamePart = 3;
+							isPlanetSelected = false;
+							PlanetNum = 1000;
+							goto start;
+
+						}
+							
+						
+					}
 
 
 					if (Keyboard::isKeyPressed(Keyboard::Num1)){
@@ -449,7 +635,7 @@ int main()
 
 					}
 
-
+					//window.setView(view);
 					window.draw(fonsprite);
 					window.draw(sun.sprite);
 					for (int n = 0; n < planet_list.list_getSize(); n++){
@@ -480,10 +666,54 @@ int main()
 					if (isSelected){		
 						window.draw(info);
 					}
+					window.draw(spaceshipinfo);
+					View minimap(sf::FloatRect(0, 0, 380,200));
+					minimap.setViewport(sf::FloatRect(0.5, -0.27, 0.5, 0.5));
+					minimap.zoom(55.f);
+					window.setView(minimap);
+					window.draw(fonsprite);
+					window.draw(sun.sprite);
+					for (int n = 0; n < planet_list.list_getSize(); n++){
+						window.draw((*(Planet *)planet_list.list_getById(n)).sprites[i]);
+					}
+					window.draw(spacestationSprite);
+					if (isAttack && N != 1000) window.draw(rocket.sprite);
+					if (pirate_list.list_getSize() != 0 && (*(Pirate *)pirate_list.list_getById(M)).getShow()) window.draw(testSprite);
+					window.draw(myspaceShip.sprite);
+
+					for (int n = 0; n < pirate_list.list_getSize(); n++){
+						window.draw((*(Pirate *)pirate_list.list_getById(n)).sprite);
+					}
+					if (att_status == 1){
+						shape.setPosition(myspaceShip.getSpaceShipPosition().x, myspaceShip.getSpaceShipPosition().y);
+						window.draw(shape);
+					}
+					window.draw(healthBarSprite);
+					if (isSelected) window.draw(healthBarEnemySprite);
+					float l = (float)myspaceShip.getCurrHealth() / myspaceShip.getHealth();
+					for (int o = 0; o < l * 108; o++) window.draw(healthSprite[o]);
+					if (isSelected)
+					{
+						float l1 = (float)(*(Pirate *)pirate_list.list_getById(N)).pirate_getCurrHealth() / (*(Pirate *)pirate_list.list_getById(N)).pirate_getHealth();
+						for (int o = 0; o < l1 * 108; o++)
+							window.draw(healthEnemysSprite[o]);
+					}
+					if (isSelected){
+						window.draw(info);
+					}
+
 					window.display();
 					window.setView(view);
+					
+
+					
+					
 					healthBarSprite.setPosition(view.getCenter().x + 590, view.getCenter().y + 200);
 					healthBarEnemySprite.setPosition(view.getCenter().x - 630, view.getCenter().y + 200);
+					spaceshipinfo.setString("Speed: " + std::to_string(myspaceShip.getSpeed()) + ";  Weapon: " + std::to_string(myspaceShip.getWeapon()) + ";  Protection: " + std::to_string(myspaceShip.getShield()) + ";  Health: " + std::to_string(myspaceShip.getCurrHealth()) + "/" + std::to_string(myspaceShip.getHealth()));
+					spaceshipinfo.setPosition(view.getCenter().x-400, view.getCenter().y + 300);
+
+
 					for (int o = 0; o < k * 108; o++) healthSprite[o].setPosition(view.getCenter().x + 598, view.getCenter().y + 328 - o);;
 
 					if (isSelected)
@@ -498,12 +728,16 @@ int main()
 						info.setPosition(view.getCenter().x - 620, view.getCenter().y - 350);
 						int h = (*(Pirate *)pirate_list.list_getById(N)).pirate_getCurrHealth();
 						std::string infostr;
-						infostr.append("Name: Test\nHealth: ");
+						infostr.append("Name: " + (*(Pirate *)pirate_list.list_getById(N)).getName());
+						infostr.append("\nHealth: ");
 						infostr.append(std::to_string(h));
-						infostr.append("\nShield: ");
+						infostr.append("\nProtection: ");
 						infostr.append(std::to_string((*(Pirate *)pirate_list.list_getById(N)).getShield()));
+						infostr.append("\nWeapon: " + std::to_string((*(Pirate *)pirate_list.list_getById(N)).getWeapon()));
+						infostr.append("\nSpeed: " + std::to_string((*(Pirate *)pirate_list.list_getById(N)).getSpeed()));
 						info.setString(infostr);
 					}
+
 					window.clear();
 					myspaceShip.move();
 
@@ -516,6 +750,10 @@ int main()
 						(*(Planet *)planet_list.list_getById(n)).move(center, (n + 2) * 800);
 					}
 
+					if (myspaceShip.getCurrHealth() <= 0){
+						gamePart = 1;
+						goto start;
+					}
 
 
 					viewmap(time1);
@@ -528,6 +766,7 @@ int main()
 
 			}
 		}
+		
 		
 	}
 	return 0;
